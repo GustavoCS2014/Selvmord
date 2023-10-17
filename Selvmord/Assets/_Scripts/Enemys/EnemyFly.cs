@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyFly : MonoBehaviour
 {
+    Transform Player;
+
     [SerializeField] Transform[] pointsMovements;
     [SerializeField] Transform shotPoint;
-    Transform Player;
     [SerializeField] GameObject bullet;
 
     [SerializeField] float speed;

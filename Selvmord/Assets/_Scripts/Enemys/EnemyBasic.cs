@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class EnemyBasic : MonoBehaviour
 {
-    [SerializeField] private bool CheckFoor;
-
     Transform Player;
+
+    [SerializeField] private bool CheckFoor;
     [SerializeField] float DistanceActivation = 30f;
     private Rigidbody2D rb;
-
 
     [SerializeField] private float speed;
     [SerializeField] private float distance;
