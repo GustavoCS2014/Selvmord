@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public bool IsWallJumping { get; private set; }
     public bool IsDashing { get; private set; }
     public bool IsFallingThroughPlatform { get; private set; }
+    public bool IsFalling { get; private set; }
 
     //? Timers
     public float LastOnGroundTime { get; private set; }
@@ -38,12 +39,12 @@ public class PlayerMovement : MonoBehaviour
 
     //? Jump
     public int JumpsAmount { get; private set; }
-    [SerializeField] private bool isJumpCut;
-    [SerializeField] private bool isJumpFalling;
-    [SerializeField] private int jumpCounter;
+    private bool isJumpCut;
+    private bool isJumpFalling;
+    private int jumpCounter;
 
     //? Slide
-    private bool isWallSliding;
+    public bool IsWallSliding { get; private set; }
     private float slideAccelerationRate = 0f;
 
     //? Wall Jump
@@ -53,8 +54,10 @@ public class PlayerMovement : MonoBehaviour
     //? Dash
     private bool canDash = true;
 
+    [SerializeField, Range(0,-30)] private float FallTreshold;
+
     private Vector2 movementInput;
-    [SerializeField] private int jumpInput;
+    private int jumpInput;
     private bool dashInput;
 
     //? Set all of these in the inspector.
@@ -134,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region COLLISION CHECKS
+        PlayerLanded();
 
         if (IsGrounded() && LastPressedJumpTime < 0 || (!IsWallJumping && IsOnPlatform()))
         {
@@ -152,6 +156,8 @@ public class PlayerMovement : MonoBehaviour
 
         #endregion
 
+        
+
         GetInputs();
 
         #region METHODS
@@ -161,11 +167,18 @@ public class PlayerMovement : MonoBehaviour
         GravityManager();
         Dash();
         Flip();
-
         #endregion
 
     }
 
+    private void PlayerLanded() {
+        if(RB.velocity.y < FallTreshold) 
+            IsFalling = true;
+        if(IsGrounded() && IsFalling && LastOnGroundTime < 0f)
+            EventManager.Instance.PlayerLanded();
+        if(RB.velocity.y > FallTreshold)
+            IsFalling = false;
+    }
 
     private void FixedUpdate()
     {
@@ -312,8 +325,8 @@ public class PlayerMovement : MonoBehaviour
         if (IsWalled() && !IsGrounded() && !IsOnPlatform() && !IsWallJumping)
         {
             //? Stops the player from sliding up when coming at a wall with upwards momentum, unless the player jumped from the floor while touching the wall.
-            if (LastOnGroundTime < 0 && !isWallSliding) RB.velocity = new Vector2(RB.velocity.x, 0);
-            isWallSliding = true;
+            if (LastOnGroundTime < 0 && !IsWallSliding) RB.velocity = new Vector2(RB.velocity.x, 0);
+            IsWallSliding = true;
             //? Deactivating the jumpcut so the walljump isn't afected by the gravity multiplier it generates.
             isJumpCut = false;
             //? Saving the direction of the wall to give a bit of leeway (CoyoteTime) to the player when Walljumping.
@@ -327,7 +340,7 @@ public class PlayerMovement : MonoBehaviour
             RefillJumps();
             return;
         }
-        isWallSliding = false;
+        IsWallSliding = false;
     }
     #endregion
 
@@ -435,7 +448,7 @@ public class PlayerMovement : MonoBehaviour
         //? The player shouldn't be able to move if dashing.
         if (IsDashing) return;
 
-        if (isWallSliding)
+        if (IsWallSliding)
         {
             //? Stops the gravity from affecting the WallSlide.
             SetGravityScale(0f);
@@ -527,13 +540,14 @@ public class PlayerMovement : MonoBehaviour
     #region COLLISION CHECKS
 
     //? Casts a box at the player's feet to check what is the player standing on.
-    private bool IsGrounded() => Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
+    public bool IsGrounded() => Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer);
 
     //? Casts a box at the player's feet to check if the player is standing on a platform.
-    private bool IsOnPlatform() => Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, platformLayer) && !IsJumping;
+    public bool IsOnPlatform() => Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, platformLayer) && !IsJumping;
 
     //? Casts a box in front of the player to check if they are touching a wall or not.
-    private bool IsWalled() => Physics2D.OverlapBox(wallCheckPoint.position, wallCheckSize, 0, wallLayer) && ((IsFacingRight && movementInput.x > 0) || (!IsFacingRight && movementInput.x < 0));
+    public bool IsWalled() => Physics2D.OverlapBox(wallCheckPoint.position, wallCheckSize, 0, wallLayer) && ((IsFacingRight && movementInput.x > 0) || (!IsFacingRight && movementInput.x < 0));
+
     #endregion
 
     //? checks which direction is facing the player and turns the sprite if necesary.
@@ -562,6 +576,11 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(groundCheckPoint.position, groundCheckSize);
         Gizmos.DrawWireCube(wallCheckPoint.position, wallCheckSize);
     }
+
+    private void OnValidate() {
+        FallTreshold = (float)Math.Round(FallTreshold,1);
+    }
+
 #endif
     #endregion
 

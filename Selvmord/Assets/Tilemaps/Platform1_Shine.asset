@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Script: {fileID: 11500000, guid: eb0ac302fd241e74ca83e502bf6604f6, type: 3}
   m_Name: Platform1_Shine
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -46390659, guid: f9689a160b1c6974c931041c1178b054, type: 3}
@@ -76,3 +76,4 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
     m_RuleTransform: 0
+  customField: 0

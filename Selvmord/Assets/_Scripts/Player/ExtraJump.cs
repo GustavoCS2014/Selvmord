@@ -7,7 +7,7 @@ public class ExtraJump : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private CircleCollider2D circlecCollider;
-    [SerializeField] private Light2D light;
+    [SerializeField] private Light2D shine;
 
 
     private void OnEnable()
@@ -27,7 +27,7 @@ public class ExtraJump : MonoBehaviour
             EventManager.Instance.ExtraJumpCollected(); //? Calls the event in the ConsumableEvents script
             sprite.enabled = false;
             circlecCollider.enabled = false;
-            light.enabled = false;
+            shine.enabled = false;
 
         }
     }
@@ -36,6 +36,6 @@ public class ExtraJump : MonoBehaviour
     {
         sprite.enabled = true;
         circlecCollider.enabled = true;
-        light.enabled = true;
+        shine.enabled = true;
     }
 }

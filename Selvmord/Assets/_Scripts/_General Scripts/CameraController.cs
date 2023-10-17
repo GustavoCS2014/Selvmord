@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour
     void FixedUpdate()
     {
         //? gets the target's position, applies the offset and smoothly moves towards the target position.
-        Vector3 _targetPosition = Target.position + new Vector3(xOffset, yOffset, -10);
+        Vector3 _targetPosition = Target.position + new Vector3(xOffset * InputManager.MovementInput.x, yOffset, -10);
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition,
             Mathf.Clamp((Vector3.Distance(transform.position, _targetPosition) * 3) * Time.fixedDeltaTime, 0.01f, 10f));
 

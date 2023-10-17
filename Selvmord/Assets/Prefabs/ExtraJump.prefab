@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 6334043807537118856}
   circlecCollider: {fileID: 6334043807537118854}
-  light: {fileID: 6334043807871648855}
+  shine: {fileID: 6334043807871648855}
 --- !u!58 &6334043807537118854
 CircleCollider2D:
   m_ObjectHideFlags: 0

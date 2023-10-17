@@ -48,6 +48,16 @@ public class EventManager : MonoBehaviour
 
     #endregion
 
+    #region LAND
+    public event Action OnPlayerLand;
+
+    public void PlayerLanded() {
+        if(OnPlayerLand != null)
+            OnPlayerLand();
+    }
+
+    #endregion
+
     #region SPAWN ENEMIES
     public event Action OnSpawnEnemies;
 

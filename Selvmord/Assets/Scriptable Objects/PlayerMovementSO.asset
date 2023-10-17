@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FallGravityMultiplier: 1.2
   MaxFallSpeed: 100
-  GravityStrength: -130.61224
-  GravityScale: 13.314194
+  GravityStrength: -97.95919
+  GravityScale: 9.985646
   FallingThroughPlatformMultiplier: 0.12
   DisablingCollisionTime: 0.1
   MaxRunSpeed: 20
@@ -27,9 +27,9 @@ MonoBehaviour:
   DecelerationMultiplierInAir: 0.3
   StartingJumpCount: 1
   MaxJumpCount: 5
-  JumpHeight: 8
+  JumpHeight: 6
   JumpTimeToReachApex: 0.35
-  JumpForce: 45.714283
+  JumpForce: 34.285717
   JumpCutGravityMultiplier: 2.5
   JumpHangGravityMultiplier: 1
   JumpHangTimeThreshold: 3
@@ -37,9 +37,9 @@ MonoBehaviour:
   JumpHangMaxSpeedMultiplier: 1.2
   MaxSlideSpeed: 5
   SlideAcceleration: 1
-  SlideSmothness: 1
+  SlideSmothness: 0.87
   SlideAccelerationAmount: 10
-  WallJumpForce: {x: 70, y: 50}
+  WallJumpForce: {x: 50, y: 40}
   WallJumpInputDisable: 0.15
   WallJumpCoolDown: 0.3
   DashDistance: 5
