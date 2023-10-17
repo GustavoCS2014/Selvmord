@@ -7,7 +7,7 @@ public class EnemyTorret : MonoBehaviour
     Transform Player;
     [SerializeField] bool ZoneActive;
 
-    [SerializeField] Transform shotPoint;
+    [SerializeField] Transform shootPoint;
     [SerializeField] Transform Body;
     [SerializeField] GameObject bullet;
     [SerializeField] float DistanceActivation;
@@ -41,7 +41,7 @@ public class EnemyTorret : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bullet, shotPoint.position, shotPoint.rotation);
+        Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         reloded = true;
     }
     private void OnDrawGizmos()
