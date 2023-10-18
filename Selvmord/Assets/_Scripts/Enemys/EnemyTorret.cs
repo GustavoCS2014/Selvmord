@@ -54,16 +54,19 @@ public class EnemyTorret : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!ZoneActive)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            float anguloRadianes = Mathf.Atan2(Player.position.y - transform.position.y, Player.position.x - transform.position.x);
-            float anguloGrados = (180 / Mathf.PI) * anguloRadianes;
-            Body.transform.rotation = Quaternion.Euler(0, 0, anguloGrados);
-
-            if (reloded)
+            if (!ZoneActive)
             {
-                reloded = false;
-                Invoke("Shoot", 2f);
+                float anguloRadianes = Mathf.Atan2(Player.position.y - transform.position.y, Player.position.x - transform.position.x);
+                float anguloGrados = (180 / Mathf.PI) * anguloRadianes;
+                Body.transform.rotation = Quaternion.Euler(0, 0, anguloGrados);
+
+                if (reloded)
+                {
+                    reloded = false;
+                    Invoke("Shoot", 2f);
+                }
             }
         }
     }
