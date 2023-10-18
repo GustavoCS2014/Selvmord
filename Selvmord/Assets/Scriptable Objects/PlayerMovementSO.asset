@@ -39,15 +39,15 @@ MonoBehaviour:
   SlideAcceleration: 1
   SlideSmothness: 0.87
   SlideAccelerationAmount: 10
-  WallJumpForce: {x: 50, y: 40}
-  WallJumpInputDisable: 0.15
+  WallJumpForce: {x: 30, y: 40}
+  WallJumpInputDisable: 0.05
   WallJumpCoolDown: 0.3
-  DashDistance: 5
-  DashTime: 0.1
-  DashCooldown: 0.25
+  DashDistance: 8
+  DashTime: 0.15
+  DashCooldown: 0.5
   DashSmoothExit: 0.3
   AfterDashHangTime: 0.06
-  DashForce: 50
+  DashForce: 53.333332
   CoyoteTime: 0.1
   WallCoyoteTime: 0.125
   JumpInputBufferTime: 0.1

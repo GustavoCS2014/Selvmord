@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditorInternal;
@@ -345,7 +346,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region WALL JUMP
-    private void WallJump()
+    private async void WallJump()
     {
         if (IsWallJumping) return; //? Impedes the player from walljumping again while on a walljump.
 
@@ -359,7 +360,9 @@ public class PlayerMovement : MonoBehaviour
             //? Turns the player to the direction they are jumping if needed.
             if (IsFacingRight != isWalledRight) Turn();
             //? Removes player's input control for a time set in the player movement scriptable object.
-            InputManager.StopInputsForTime(true, true, true, Data.WallJumpInputDisable);
+            InputManager.StopInputs(true, true, true);
+            await Task.Delay(Mathf.FloorToInt(Data.WallJumpInputDisable * 1000));
+            InputManager.StopInputs(false, false, false);
         }
     }
     #endregion
@@ -370,18 +373,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if (dashInput && canDash && !IsWalled())
+        if (dashInput && canDash && !IsWalled() && !IsWallSliding)
         {
-            StartCoroutine(DashCoroutine());
+            DashCoroutine();
         }
     }
 
-    private IEnumerator DashCoroutine()
+    private async void DashCoroutine()
     {
         //? Setting booleans
         canDash = false;
         IsDashing = true;
 
+        Vector2 dir = InputManager.MovementInput;
+        
         //?Stopping the inputs.
         InputManager.StopAllInputs(true);
         //? Saves the current Gravity to give the player the same vel once the dash is finished.
@@ -390,22 +395,28 @@ public class PlayerMovement : MonoBehaviour
         SetGravityScale(0f);
 
         //? Performing the dash.
-        RB.velocity = new Vector2(transform.localScale.x * Data.DashForce, 0);
-        yield return new WaitForSeconds(Data.DashTime);
+        if(dir.x !=  0) 
+            RB.velocity = dir.normalized * Data.DashForce;
+        if(dir.x == 0)
+            RB.velocity = new Vector2(transform.localScale.x, dir.y).normalized * Data.DashForce;
+        await Task.Delay(Mathf.FloorToInt(Data.DashTime * 1000));
+        //yield return new WaitForSeconds(Data.DashTime);
         //? Stoping the dash.
         RB.velocity = new Vector2(RB.velocity.x * Data.DashSmoothExit, 0);
         //? Resuming the inputs.
         InputManager.StopAllInputs(false);
 
         //? Adding a hang time when exiting the dash to give the player some time to think what to do.
-        yield return new WaitForSeconds(Data.AfterDashHangTime);
+        await Task.Delay(Mathf.FloorToInt(Data.AfterDashHangTime * 1000));
+        //yield return new WaitForSeconds(Data.AfterDashHangTime);
         IsDashing = false;
 
         //? Returning the player it's original grav.
         SetGravityScale(_originalGravity);
 
         //? waiting for the dash Cooldown.
-        yield return new WaitForSeconds(Data.DashCooldown);
+        await Task.Delay(Mathf.FloorToInt(Data.DashCooldown * 1000));
+        //yield return new WaitForSeconds(Data.DashCooldown);
         canDash = true;
     }
 

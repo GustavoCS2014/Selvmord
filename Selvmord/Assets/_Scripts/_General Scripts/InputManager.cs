@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
     
 public class InputManager : MonoBehaviour
@@ -94,24 +95,6 @@ public class InputManager : MonoBehaviour
 
     #region HELP METHODS
     /// <summary>
-    /// Stops the selected inputs for the specified amount of time.
-    /// set to true to stop input.
-    /// </summary>
-    public static void StopInputsForTime(bool _movement, bool _jump, bool _dash, float _seconds) {
-        movementActive = !_movement;
-        jumpActive = !_jump;
-        dashActive = !_dash;
-        waitForSeconds = _seconds;
-        Instance.StartCoroutine("WaitForSeconds");
-        waitForSeconds = 0;
-        movementActive = true;
-        jumpActive = true;
-        dashActive = true;
-
-    }
-
-
-    /// <summary>
     /// Stops selected inputs if true
     /// ** NOTE: YOU HAVE TO MANUALLY TURN BACK ON.
     /// </summary>
@@ -122,29 +105,11 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Stops all inputs for the specified amount of time.
-    /// </summary>
-    /// <param name="_seconds"></param>
-    public static void StopAllInputsForTime(float _seconds) {
-        inputsActive = false;
-        waitForSeconds = _seconds;
-        Instance.StartCoroutine("WaitForSeconds");
-        waitForSeconds = 0;
-        inputsActive = true;
-    }
-
-    /// <summary>
     /// Stops all inputs if true
     /// ** NOTE: YOU HAVE TO MANUALLY TURN BACK ON.
     /// </summary>
     public static void StopAllInputs(bool _input) {
         inputsActive = !_input;
-    }
-
-
-    private IEnumerator WaitForSeconds() {
-
-        yield return new WaitForSeconds(waitForSeconds);
     }
 
     #endregion
