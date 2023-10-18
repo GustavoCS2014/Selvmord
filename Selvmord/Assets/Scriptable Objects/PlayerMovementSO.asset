@@ -19,8 +19,8 @@ MonoBehaviour:
   FallingThroughPlatformMultiplier: 0.12
   DisablingCollisionTime: 0.1
   MaxRunSpeed: 20
-  RunAcceleration: 10
-  RunAccelerationAmount: 25
+  RunAcceleration: 5
+  RunAccelerationAmount: 12.5
   RunDeceleration: 10
   RunDecelerationAmount: 25
   AccelerationMultiplierInAir: 0.5

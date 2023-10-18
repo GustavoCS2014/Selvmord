@@ -77,3 +77,5 @@ MonoBehaviour:
     - {x: 1, y: 0, z: 0}
     m_RuleTransform: 0
   customField: 0
+  MergeWithGround: 0
+  IsGround: 0
