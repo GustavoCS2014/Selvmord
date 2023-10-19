@@ -94,20 +94,20 @@ public class CameraController : MonoBehaviour
 
     private void BossFight()
     {
-        if (!StartBossFight)
+        if (!Boss.StartBossFight)
         {
 
-            transform.position = Vector2.MoveTowards(transform.position, StartPoint.position, 5 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, StartPoint.position, Boss.VelocityMovementBoss * Time.deltaTime);
 
             if (Vector2.Distance(transform.position, StartPoint.position) < 1)
             {
-                StartBossFight = true;
+                Boss.StartBossFight = true;
             }
 
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, EndPoint.position, 5 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, EndPoint.position, Boss.VelocityMovementBoss * Time.deltaTime);
         }
     }
 }

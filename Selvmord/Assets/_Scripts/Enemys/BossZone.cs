@@ -17,7 +17,7 @@ public class BossZone : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("BossFight", 0);
-            CameraController.StartBossFight = false;
+            Boss.StartBossFight = false;
         }
         
     }
