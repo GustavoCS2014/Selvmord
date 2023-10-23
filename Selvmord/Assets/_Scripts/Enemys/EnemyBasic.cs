@@ -7,48 +7,70 @@ public class EnemyBasic : MonoBehaviour
 {
     Transform Player;
 
-    [SerializeField] private bool CheckFoor;
+    [SerializeField] private bool SeeActiveDistance,SwitchGroundCheck;
     [SerializeField] float DistanceActivation = 30f;
     private Rigidbody2D rb;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float SpeedMin,SpeedMax;
+    private float speed;
+
+    [SerializeField] private float WaitTimeMin, WaitTimeMax;
+    private float WaitTime;
+
     [SerializeField] private float distance;
-    [SerializeField] private Transform Floor;
-    [SerializeField] private LayerMask isFloor;
+    [SerializeField] private Transform GroundCheck;
+    [SerializeField] private LayerMask isGround;
+
+    private bool Wait = false;
+
     MainSystem MS;
-
-    private void Awake() {
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        MS = GameObject.FindGameObjectWithTag("mainSystem").GetComponent<MainSystem>();
+        //MS = GameObject.FindGameObjectWithTag("mainSystem").GetComponent<MainSystem>();
+
+        speed = Random.Range(SpeedMin, SpeedMax);
+        WaitTime = Random.Range(WaitTimeMin, WaitTimeMax);
     }
+
+    private void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     private void Update()
     {
         if (Mathf.Abs(transform.position.x - Player.position.x) < DistanceActivation)
         {
-            if (CheckFoor)
+            if (SwitchGroundCheck)
             {
-                rb.velocity = new Vector2(speed * transform.right.x, rb.velocity.y);
-                RaycastHit2D informationFloor = Physics2D.Raycast(Floor.position, Vector2.down, distance);
-
-                if (!informationFloor)
+                if(!Wait)
                 {
-                    Spin();
+                    rb.velocity = new Vector2(speed * transform.right.x, rb.velocity.y);
+                    RaycastHit2D informationFloor = Physics2D.Raycast(GroundCheck.position, Vector2.down, distance);
+
+                    if (!informationFloor)
+                    {
+                        rb.velocity = new Vector2(0,0);
+                        Wait = true;
+                        Invoke("Spin", WaitTime);
+                    }
                 }
             }
             else
             {
-                rb.velocity = new Vector2(speed * transform.right.x, rb.velocity.y);
-
-                RaycastHit2D informationFloor = Physics2D.Raycast(transform.position, transform.right, distance, isFloor);
-
-                if (informationFloor)
+                if (!Wait)
                 {
-                    Spin();
+                    rb.velocity = new Vector2(speed * transform.right.x, rb.velocity.y);
+
+                    RaycastHit2D informationFloor = Physics2D.Raycast(transform.position, transform.right, distance, isGround);
+
+                    if (informationFloor)
+                    {
+                        rb.velocity = new Vector2(0, 0);
+                        Wait = true;
+                        Invoke("Spin", WaitTime);
+                    }
                 }
             }
         }
@@ -57,19 +79,28 @@ public class EnemyBasic : MonoBehaviour
     void Spin()
     {
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
+        speed = Random.Range(SpeedMin, SpeedMax);
+        WaitTime = Random.Range(WaitTimeMin, WaitTimeMax);
+        Wait = false;
     }
 
     private void OnDrawGizmos()
     {
-        if (CheckFoor)
+        if (SwitchGroundCheck)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(Floor.transform.position, Floor.transform.position + Vector3.down * distance);
+            Gizmos.DrawLine(GroundCheck.transform.position, GroundCheck.transform.position + Vector3.down * distance);
         }
         else
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, transform.position + transform.right * distance);
+        }
+
+        if (SeeActiveDistance)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(transform.position, new Vector3(DistanceActivation * 2, DistanceActivation * 1.5f));
         }
     }
 
