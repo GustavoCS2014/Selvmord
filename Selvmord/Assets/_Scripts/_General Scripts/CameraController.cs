@@ -25,6 +25,10 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float yOffset;
 
+    private Transform StartPoint;
+    private Transform EndPoint;
+
+    public static bool StartBossFight = false;
     #endregion
 
     #region EDITOR METHODS
@@ -47,15 +51,29 @@ public class CameraController : MonoBehaviour
     }
 #endif
     #endregion
+    private void Start()
+    {
+        StartPoint = GameObject.FindGameObjectWithTag("StartPoint").transform;
+        EndPoint = GameObject.FindGameObjectWithTag("EndPoint").transform;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        //? gets the target's position, applies the offset and smoothly moves towards the target position.
-        Vector3 _targetPosition = Target.position + new Vector3(xOffset * InputManager.MovementInput.x, yOffset, -10);
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition,
-            Mathf.Clamp((Vector3.Distance(transform.position, _targetPosition) * 3) * Time.fixedDeltaTime, 0.01f, 10f));
+        if (PlayerPrefs.GetInt("BossFight") < 1)
+        {
+            //? gets the target's position, applies the offset and smoothly moves towards the target position.
+            Vector3 _targetPosition = Target.position + new Vector3(xOffset, yOffset, -10);
+            transform.position = Vector3.MoveTowards(transform.position, _targetPosition,
+                Mathf.Clamp((Vector3.Distance(transform.position, _targetPosition) * 3) * Time.fixedDeltaTime, 0.01f, 10f));
 
-        if(Math.Abs(Vector3.Distance(transform.position, _targetPosition)) < 0.01f) transform.position = _targetPosition; 
+            if (Math.Abs(Vector3.Distance(transform.position, _targetPosition)) < 0.01f) transform.position = _targetPosition;
+        }
+        else
+        {
+            BossFight();
+        }
+       
 
     }
 
@@ -72,5 +90,24 @@ public class CameraController : MonoBehaviour
         //? Smoothly transitions to the target zoom in the specified amount of time.
         Camera.main.orthographicSize = Mathf.MoveTowards(_currentZoom, _targetZoom, _time * Time.fixedDeltaTime);
         if (Math.Abs(Camera.main.orthographicSize - _targetZoom) < .2f) Camera.main.orthographicSize = _targetZoom;
+    }
+
+    private void BossFight()
+    {
+        if (!Boss.StartBossFight)
+        {
+
+            transform.position = Vector2.MoveTowards(transform.position, StartPoint.position, Boss.VelocityMovementBoss * Time.deltaTime);
+
+            if (Vector2.Distance(transform.position, StartPoint.position) < 1)
+            {
+                Boss.StartBossFight = true;
+            }
+
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, EndPoint.position, Boss.VelocityMovementBoss * Time.deltaTime);
+        }
     }
 }
