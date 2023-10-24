@@ -99,7 +99,7 @@ MonoBehaviour:
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.8
-    m_Output: 1
+    m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 2
     m_Neighbors: 010000000100000001000000010000000100000002000000
@@ -118,7 +118,7 @@ MonoBehaviour:
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
     m_PerlinScale: 0.8
-    m_Output: 1
+    m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 2
     m_Neighbors: 020000000100000001000000010000000100000001000000
@@ -920,5 +920,3 @@ MonoBehaviour:
     - {x: 1, y: 1, z: 0}
     m_RuleTransform: 0
   customField: 0
-  MergeWithGround: 0
-  IsGround: 0

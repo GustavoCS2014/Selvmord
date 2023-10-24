@@ -14,11 +14,11 @@ public class PlayerAnimationController : MonoBehaviour
     private int currentState;
 
     private float tickTime;
-    [SerializeField] private float tickTimeMax;
 
     private bool wasWalled;
     private bool wasGrounded;
     private bool wasWallSliding;
+    private bool wasFalling;
     private Vector2 lastSpeed;
     private Vector2 lastInput;
 
@@ -34,8 +34,18 @@ public class PlayerAnimationController : MonoBehaviour
     private float WallLandTime;
     private float WallJumpTime;
 
-    [SerializeField] private float jumpTransitionTreshold;
-    [SerializeField] private float wallSlideTreshold;
+    private const float tickTimeMax = .05f;
+    [Header("____ Tresholds ____")]
+    [SerializeField] private float jumpTransitionTreshold = 15f;
+    [SerializeField] private float wallSlideTreshold = 0.5f;
+    [SerializeField, Range(0, -30)] private float FallTreshold = -10f;
+    [Space (15)]
+    [Header("____ Particle Emitters ____")]
+    [SerializeField] private ParticleSystem LandParticles;
+    [SerializeField] private ParticleSystem DoubleJumpParticles;
+    [SerializeField] private ParticleSystem HoodieDashParticles;
+    [SerializeField] private ParticleSystem PantsDashParticles;
+
     #endregion
 
     private void Awake() {
@@ -50,6 +60,12 @@ public class PlayerAnimationController : MonoBehaviour
         ChangeAnimation();
 
         GetStateLastTick();
+
+        HandleDashParticles();
+
+        HandleLandParticles();
+        
+        HandleDoubleJumpParticles();
     }
 
     private void GetStateLastTick() {
@@ -62,8 +78,11 @@ public class PlayerAnimationController : MonoBehaviour
             wasWallSliding = player.IsWallSliding;
             lastSpeed = player.RB.velocity;
             lastInput = InputManager.MovementInput;
+            wasFalling = player.RB.velocity.y < FallTreshold ? true : false;
         }
     }
+
+    #region HANDLE ANIMATION
 
     private void ChangeAnimation() {
         var _state = GetState();
@@ -105,6 +124,38 @@ public class PlayerAnimationController : MonoBehaviour
             return _state;
         }
     }
+    #endregion
+
+    #region HANDLE PARTICLES
+
+    private void HandleDashParticles() {
+        if(!player.IsDashing) {
+            HoodieDashParticles.Stop();
+            PantsDashParticles.Stop();
+            return;
+        }
+        if(player.IsDashing) {
+            HoodieDashParticles.Play();
+            PantsDashParticles.Play();
+            return;
+        }
+    }
+
+    private void HandleLandParticles() {
+        if(wasFalling && player.IsGrounded()) {
+            wasFalling = false;
+            LandParticles.Play();
+        }
+    }
+
+    private bool isDoubleJumping() => InputManager.JumpInput > 0 && player.JumpCounter > 0 && player.JumpsAmount != player.JumpCounter && !player.IsWallJumping;
+
+    private void HandleDoubleJumpParticles() {
+        if(isDoubleJumping()) {
+            DoubleJumpParticles.Play();
+        }
+    }
+    #endregion
 
     private void OnValidate() {
         jumpTransitionTreshold = (float)Math.Round(jumpTransitionTreshold, 1);

@@ -40,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     //? Jump
     public int JumpsAmount { get; private set; }
+    public int JumpCounter { get; private set; }
     private bool isJumpCut;
     private bool isJumpFalling;
-    private int jumpCounter;
 
     //? Slide
     public bool IsWallSliding { get; private set; }
@@ -54,8 +54,6 @@ public class PlayerMovement : MonoBehaviour
 
     //? Dash
     private bool canDash = true;
-
-    [SerializeField, Range(0,-30)] private float FallTreshold;
 
     private Vector2 movementInput;
     private int jumpInput;
@@ -138,7 +136,6 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region COLLISION CHECKS
-        PlayerLanded();
 
         if (IsGrounded() && LastPressedJumpTime < 0 || (!IsWallJumping && IsOnPlatform()))
         {
@@ -170,15 +167,6 @@ public class PlayerMovement : MonoBehaviour
         Flip();
         #endregion
 
-    }
-
-    private void PlayerLanded() {
-        if(RB.velocity.y < FallTreshold) 
-            IsFalling = true;
-        if(IsGrounded() && IsFalling && LastOnGroundTime < 0f)
-            EventManager.Instance.PlayerLanded();
-        if(RB.velocity.y > FallTreshold)
-            IsFalling = false;
     }
 
     private void FixedUpdate()
@@ -297,14 +285,14 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         if (IsWallJumping) return;
-        if (jumpCounter <= 0) return;
+        if (JumpCounter <= 0) return;
 
-        if (IsJumping) jumpCounter--;
+        if (IsJumping) JumpCounter--;
 
         //? Removes one jump if player has double jumped
         if (LastOnGroundTime < 0 && LastOnWallTime < 0 && !IsWallJumping && !IsJumping)
         {
-            jumpCounter--;
+            JumpCounter--;
         }
 
         float _force = Data.JumpForce;
@@ -353,7 +341,7 @@ public class PlayerMovement : MonoBehaviour
         if (CanWallJump())
         {
             IsWallJumping = true;
-            jumpCounter--;
+            JumpCounter--;
             //? Launches the player in the opposite direction from the wall they are jumping, wether they are facing the wall or not. (thanks to the IsWalledRight boolean)
             RB.velocity = isWalledRight ? new Vector2(Data.WallJumpForce.x, Data.WallJumpForce.y) :
                 new Vector2(-Data.WallJumpForce.x, Data.WallJumpForce.y);
@@ -515,7 +503,7 @@ public class PlayerMovement : MonoBehaviour
     /// Restores the player's jumps.
     /// </summary>
     public void RefillJumps() =>
-        jumpCounter = JumpsAmount;
+        JumpCounter = JumpsAmount;
 
     /// <summary>
     /// Adds a jump slot to the player.
@@ -523,7 +511,7 @@ public class PlayerMovement : MonoBehaviour
     public void AddJump()
     {
         JumpsAmount++;
-        jumpCounter++;
+        JumpCounter++;
     }
 
 
@@ -540,7 +528,7 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = Vector2.zero;
         JumpsAmount = Data.StartingJumpCount;
-        jumpCounter = JumpsAmount;
+        JumpCounter = JumpsAmount;
     }
 
 
@@ -568,11 +556,11 @@ public class PlayerMovement : MonoBehaviour
             Turn();
     }
 
-    public bool CanJump() => (LastOnGroundTime > 0 && !IsJumping) || (jumpCounter > 0 && !IsJumping);
+    public bool CanJump() => (LastOnGroundTime > 0 && !IsJumping) || (JumpCounter > 0 && !IsJumping);
 
     public bool CanJumpCut() => IsJumping && RB.velocity.y > 0;
 
-    public bool CanWallJump() => (LastOnWallTime > 0 && jumpCounter >= 0 && wallJumpCoolDown < 0 && LastPressedJumpTime > 0);
+    public bool CanWallJump() => (LastOnWallTime > 0 && JumpCounter >= 0 && wallJumpCoolDown < 0 && LastPressedJumpTime > 0);
 
     public bool CanFallThroughPlatform() => movementInput.y < 0 && jumpInput > 0;
 
@@ -588,10 +576,6 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(wallCheckPoint.position, wallCheckSize);
     }
 
-    private void OnValidate() {
-        FallTreshold = (float)Math.Round(FallTreshold,1);
-    }
-
 #endif
     #endregion
 
@@ -604,5 +588,5 @@ public class PlayerMovement : MonoBehaviour
     {
         RB.velocity = new Vector2(RB.velocity.x, VelocityReboundPlayer);
     }
-}
 
+}
