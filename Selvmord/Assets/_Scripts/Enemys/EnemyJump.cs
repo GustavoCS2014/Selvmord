@@ -30,6 +30,7 @@ public class EnemyJump : MonoBehaviour
     private void Awake() 
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
     }
 
     private void Start()
@@ -97,8 +98,6 @@ public class EnemyJump : MonoBehaviour
 
     void Spin()
     {
-        Debug.Log("Gira uwu");
-
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
         Speed *= - 0.5f;
 
