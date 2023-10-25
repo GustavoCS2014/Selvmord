@@ -223,7 +223,7 @@ public class MainSystem : MonoBehaviour
 
         for (int i = conNum; i > 0; i--)
         {
-            CheckPointsGO[i - 1].SetActive(false);
+            //CheckPointsGO[i - 1].SetActive(false);
         }
 
     }
@@ -234,7 +234,7 @@ public class MainSystem : MonoBehaviour
 
         if (checkpoint >= 0)
         {
-            Walls[checkpoint].SetActive(true);
+            //Walls[checkpoint].SetActive(true);
         }
 
     }
