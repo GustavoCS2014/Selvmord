@@ -2,7 +2,7 @@
     width: 200px;
     height: 18px;
     background-color: rgba(255, 255, 255, 0);
-    color: rgba(255, 255, 255, 255);
+    color: rgb(139, 139, 139);
     -unity-background-image-tint-color: rgb(255, 255, 255);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
@@ -17,7 +17,7 @@
     width: 200px;
     height: 18px;
     background-color: rgba(255, 255, 255, 0);
-    color: rgb(139, 139, 139);
+    color: rgb(255, 255, 255);
     -unity-background-image-tint-color: rgb(255, 255, 255);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
