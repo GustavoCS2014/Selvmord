@@ -8,6 +8,8 @@ TagManager:
   - Platforms
   - EndPoint
   - StartPoint
+  - MainSystem
+  - CheckPoint
   - Spikes
   layers:
   - Default

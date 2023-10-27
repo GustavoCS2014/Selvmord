@@ -23,7 +23,7 @@ public class SpawnControler : MonoBehaviour
     #region Start Method
     void Start()
     {
-        MS = GameObject.FindGameObjectWithTag("mainSystem").GetComponent<MainSystem>();
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
         RespawnPlayer();
 
     }

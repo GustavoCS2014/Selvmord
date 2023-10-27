@@ -27,7 +27,7 @@ public class EnemyBasic : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //MS = GameObject.FindGameObjectWithTag("mainSystem").GetComponent<MainSystem>();
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
 
         speed = Random.Range(SpeedMin, SpeedMax);
         WaitTime = Random.Range(WaitTimeMin, WaitTimeMax);

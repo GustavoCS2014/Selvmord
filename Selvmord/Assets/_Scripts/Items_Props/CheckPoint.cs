@@ -13,7 +13,7 @@ public class CheckPoint : MonoBehaviour
 
     private void Start()
     {
-        MS = GameObject.FindGameObjectWithTag("mainSystem").GetComponent<MainSystem>();
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
         PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive"));
     }
     void Update()

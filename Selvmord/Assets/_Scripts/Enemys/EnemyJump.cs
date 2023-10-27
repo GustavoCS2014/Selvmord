@@ -30,6 +30,7 @@ public class EnemyJump : MonoBehaviour
     private void Awake() 
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
     }
 
     private void Start()
@@ -64,10 +65,7 @@ public class EnemyJump : MonoBehaviour
     {
         if (SwitchGroundCheck)
         {
-
-            RaycastHit2D informationFloor = Physics2D.Raycast(FloorControler.position, Vector2.down, DistanceDetectGround);
-
-            
+            RaycastHit2D informationFloor = Physics2D.Raycast(FloorControler.position, Vector2.down, DistanceDetectGround, isGround);
 
             if (!informationFloor)
             {
@@ -97,13 +95,11 @@ public class EnemyJump : MonoBehaviour
 
     void Spin()
     {
-        Debug.Log("Gira uwu");
 
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
         Speed *= - 0.5f;
 
         DetectionGround = Speed * 12.2f / 10f;
-
         FloorControler.transform.position = new Vector3(transform.position.x + DetectionGround, transform.position.y);
 
         MovementGH();
@@ -111,6 +107,7 @@ public class EnemyJump : MonoBehaviour
 
     private void SwitchData()
     {
+
         if (Speed < 0)
         {
             Speed = Random.Range(SpeedMin, SpeedMax);
@@ -122,25 +119,17 @@ public class EnemyJump : MonoBehaviour
         }
 
         DetectionGround = Speed * 12.2f / 10f;
-
         FloorControler.transform.position = new Vector3(transform.position.x + DetectionGround, transform.position.y);
     }
 
     private void OnDrawGizmos()
     {
-        if (SwitchGroundCheck)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(FloorControler.transform.position, FloorControler.transform.position + Vector3.down * DistanceDetectGround);
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, transform.position + transform.right * DistanceDetectGround);
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(FloorControler.transform.position, FloorControler.transform.position + Vector3.down * DistanceDetectGround);
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 1f);
+
     }
 
     private void MovementGH()
@@ -148,8 +137,8 @@ public class EnemyJump : MonoBehaviour
         rb.velocity = new Vector2(Speed, rb.velocity.y);
         rb.AddForce(Vector2.up * jumpForce*100, ForceMode2D.Impulse);
 
-        isInGround = true;
         SwitchData();
+        isInGround = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
