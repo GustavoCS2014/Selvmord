@@ -42,8 +42,10 @@ GameObject:
   - component: {fileID: 3310541717555752711}
   - component: {fileID: 3310541717555752708}
   - component: {fileID: 3310541717555752709}
-  - component: {fileID: 3310541717555752706}
+  - component: {fileID: 7506200253879413271}
   - component: {fileID: 3310541717555752707}
+  - component: {fileID: 3974430281779285674}
+  - component: {fileID: 8451149067128940050}
   m_Layer: 0
   m_Name: EnemyJumping
   m_TagString: Untagged
@@ -108,7 +110,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -839674043, guid: bca59ab684b8b0248b1437debb8d20be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,8 +142,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &3310541717555752706
-CircleCollider2D:
+--- !u!61 &7506200253879413271
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -153,9 +155,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.061649323}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.625}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.7640689, y: 0.50170135}
+  m_EdgeRadius: 0
 --- !u!114 &3310541717555752707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +190,36 @@ MonoBehaviour:
   DistanceDetectGround: 1
   SpeedMin: 5
   SpeedMax: 15
+--- !u!95 &3974430281779285674
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310541717555752704}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7025af6f97f29404ea936e9ff5dc9cab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8451149067128940050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310541717555752704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a69df4685632a2419fd7b1ff92522b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     public static int JumpInput;
     public static bool DashInput;
     public static bool InteractiveKey;
+    public static bool HealInput;
 
     //? variable used for the wait coroutine.
     private static float waitForSeconds;
@@ -53,6 +54,10 @@ public class InputManager : MonoBehaviour
         InteractiveHandler();
     }
     #region INPUT HANDLERS
+
+    private void HealInputHandler() {
+        HealInput = Input.GetButton("Heal") ? true : false;
+    }
 
     private void InteractiveHandler()
     {

@@ -14696,10 +14696,11 @@ GameObject:
   - component: {fileID: 9030962780619600281}
   - component: {fileID: 9030962780619600280}
   - component: {fileID: 9030962780619600485}
+  - component: {fileID: 1225247586}
+  - component: {fileID: 73608647798649089}
   - component: {fileID: 9030962780619600486}
   - component: {fileID: 9030962780619600487}
   - component: {fileID: 4656244536469796707}
-  - component: {fileID: 1225247586}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -14808,6 +14809,38 @@ MonoBehaviour:
     m_Bits: 8
   VelocityRebound: {x: 0, y: 0}
   VelocityReboundPlayer: 0
+--- !u!114 &1225247586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030962780619600282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd57666db4daf3846847b29f385d6f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpTransitionTreshold: 15
+  wallSlideTreshold: 0.5
+  FallTreshold: -10
+  LandParticles: {fileID: 8593110669185348355}
+  DoubleJumpParticles: {fileID: 886748443}
+  HoodieDashParticles: {fileID: 5556410818037472735}
+  PantsDashParticles: {fileID: 4275703575884675686}
+--- !u!114 &73608647798649089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030962780619600282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2102842139fd5834f8551e47d8485895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugHealth: 500
 --- !u!61 &9030962780619600486
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14876,25 +14909,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1225247586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9030962780619600282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd57666db4daf3846847b29f385d6f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpTransitionTreshold: 15
-  wallSlideTreshold: 0.5
-  FallTreshold: -10
-  LandParticles: {fileID: 8593110669185348355}
-  DoubleJumpParticles: {fileID: 886748443}
-  HoodieDashParticles: {fileID: 5556410818037472735}
-  PantsDashParticles: {fileID: 4275703575884675686}
 --- !u!1 &9030962780792648500
 GameObject:
   m_ObjectHideFlags: 0
