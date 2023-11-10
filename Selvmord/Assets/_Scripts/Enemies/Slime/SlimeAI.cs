@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
@@ -12,145 +13,68 @@ public class SlimeAI : MonoBehaviour
 {
 
     private Rigidbody2D rb2D;
+    private MainSystem MS;
 
-    [Header("DEBUG OPTIONS")]
-    [SerializeField] private bool Turned;
     [SerializeField] private bool ShowDebugRays;
-    [SerializeField] private float simulationDuration;
-    [SerializeField] private float simulationSteps;
-
-    [Space(5)]
-    [SerializeField] private Vector2 target = new Vector2(1,3);
+    private float simulationDuration = 5f;
+    private float simulationSteps = 0.01f;
+    [Space(10)]
 
     [SerializeField] private float minStrenght = 2;
-    [SerializeField] private float strenght;
     [SerializeField] private float maxStrenght = 8;
     [SerializeField] private int strenghtIncrementSteps = 10;
-    [SerializeField] private Dictionary<bool, float> _strenghtRanges = new Dictionary<bool, float>();
+    [Space(5)]
+    [SerializeField] private float minTime = 1.5f;
+    [SerializeField] private float maxTime = 3f;
+    public float IdleTime;
+    private bool isFacingRight;
+    public bool IsJumping;
+
+    [SerializeField] private Vector2 target = new Vector2(1,3);
 
     [SerializeField] private float playerDetectionSize;
 
     private float[] PlatfomSize = new float[3]; //? 0 = Y, 1 = LeftBoundry, 2 = RightBoundry
     private bool scannedPlatform;
 
-    [SerializeField] private Transform groundScan;
 
     [SerializeField] private LayerMask canStandOn;
     [SerializeField] private LayerMask canDetect;
-    private bool isFacingRight;
-    private bool isJumping;
-    public enum State {Idle, Launching, Jumping, Landing}
-    public State CurrentState;
+
+    [SerializeField] private Transform groundScan;
 
     private void Awake() {
         rb2D = GetComponent<Rigidbody2D>();
+        //MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
     }
 
-    private void Start() {
-        CurrentState = State.Idle;
-    }
+    void Update(){
+        SetPlatformSize(); //? Automatically sets the platform size on landing.
 
-
-    void FixedUpdate(){
-        SetPlatformSize();
-
-        StartCoroutine(SetState(CurrentState));
-        //if(Input.GetKey(KeyCode.K) && rb2D.velocity == Vector2.zero) {
-        //    FaceCorrectDirection();
-        //    rb2D.velocity = CalculateVelocity();
-        //}
-
-        //Debug.LogWarning("grounded?" + isGrounded());
-
-        if(ShowDebugRays && IsPlayerOnPlatformBoundries()) {
-            Debug.DrawLine(transform.position, SearchPlayerInRadius().position, Color.white);
-        }
-    }
-
-    private IEnumerator SetState(State _state) {
-
-        switch(_state) {
-            case State.Idle:
-                yield return StartCoroutine(Idle());
-                break;
-            case State.Launching:
-                yield return StartCoroutine(Launching(0.33f));
-                break;
-            case State.Jumping:
-                yield return StartCoroutine(Jumping());
-                break;
-            case State.Landing:
-                yield return StartCoroutine(Landing(0.16f));
-                break;
-        }
-        //if(_state == State.Landing) {
-        //    yield return StartCoroutine(Landing(0.16f));
-        //    CurrentState = State.Idle;
-        //}
-        //if(_state == State.Jumping) {
-        //    yield return StartCoroutine(Jumping());
-        //    CurrentState = State.Landing;
-        //}
-        //if(_state == State.Launching) {
-        //    yield return StartCoroutine(Launching(0.33f));
-        //    CurrentState = State.Jumping;
-        //}
-        //if(_state == State.Idle) {
-        //    yield return StartCoroutine(Idle());
-        //    CurrentState = State.Launching;
-        //}
-
-        //if(InputManager.InteractiveKey) SetPlatformSize();
-    }
-
-    private IEnumerator Idle() {
-        float _randomIdleTime = 0;
-        if(!IsPlayerOnPlatformBoundries()) 
-            _randomIdleTime = Random.Range(1, 2.5f);
+        #region PERFORMING ROUTINE
+        //? Performs IA XD
+        IdleTime -= Time.deltaTime;
         
-        if(IsPlayerOnPlatformBoundries()) 
-            _randomIdleTime = Random.Range(1, 1.5f);
-
-        _randomIdleTime = 3;
-
-        while(_randomIdleTime > 0) {
-            _randomIdleTime -= Time.deltaTime;
-            //Debug.Log(_randomIdleTime);
-            yield return null;
-        }
-
-        CurrentState = State.Launching;
-        //yield return new WaitForSeconds(_randomIdleTime);
-
-        //if(_randomIdleTime < 0) {
-        //    CurrentState = State.Launching;
-        //}
-    }
-
-    public IEnumerator Launching(float _secondsWait) {
-        yield return new WaitForSeconds(_secondsWait);
-        CurrentState = State.Jumping;
-    }
-
-    private IEnumerator Jumping() {
-        if(isGrounded() && !isJumping) {
+        if(IdleTime < 0.34f && !IsJumping && IsGrounded())
             FaceCorrectDirection();
-            rb2D.velocity = CalculateVelocity();
-            isJumping = true;
+        if(IdleTime < 0 && !IsJumping && IsGrounded()) 
+            Jump();
+        
+        if(IsJumping && IsGrounded() && IdleTime < -0.3f) {
+            IdleTime = Random.Range(minTime, maxTime);
+            IsJumping = false;
         }
-        while(!isGrounded()) {
-            yield return null;
-        }
-        CurrentState = State.Landing;
-        //yield return new WaitUntil(() => isGrounded());
-        //if(isGrounded() && rb2D.velocity == Vector2.zero)
-        //    CurrentState = State.Landing;
+        #endregion
     }
 
-    public IEnumerator Landing(float _secondsWait) {
-        yield return new WaitForSeconds(_secondsWait);
-        isJumping = false;
-        CurrentState = State.Idle;
+    #region ROUTINE SETUP
+    private void Jump() {
+        rb2D.velocity = CalculateVelocity();
+        IsJumping = true;
+    }
+
+    private IEnumerator wait(float _time) {
+        yield return new WaitForSeconds(_time);
     }
 
     private void FaceCorrectDirection() {
@@ -172,6 +96,7 @@ public class SlimeAI : MonoBehaviour
             return;
         }
     }
+    #endregion
 
     #region TRAYECTORY SIMULATION
 
@@ -180,20 +105,20 @@ public class SlimeAI : MonoBehaviour
         Vector2 _velocity;
         float _strenghtIncrement = (maxStrenght - minStrenght) / strenghtIncrementSteps;
         float _LastTrueStrenght = 0f;
-        strenght = minStrenght;
+        float _strenght = minStrenght;
 
         for(int i = 0; i < strenghtIncrementSteps; i++) {
-            _velocity = ((transform.position  + new Vector3(target.x * transform.localScale.x, target.y)) - transform.position) * strenght;
+            _velocity = ((transform.position  + new Vector3(target.x * transform.localScale.x, target.y)) - transform.position) * _strenght;
 
             if(CheckTrayectory(_velocity) < 0) { //? if the ray hits the playform stores the strenght and continues.
-                _LastTrueStrenght = strenght;
+                _LastTrueStrenght = _strenght;
             }
             if(CheckTrayectory(_velocity) > 0) {
-                _LastTrueStrenght = strenght;
+                _LastTrueStrenght = _strenght;
                 break; //? If a ray hits the player stores the strenght and stops.
             }
-            strenght += _strenghtIncrement;
-            strenght = Math.Clamp(strenght, minStrenght, maxStrenght);
+            _strenght += _strenghtIncrement;
+            _strenght = Math.Clamp(_strenght, minStrenght, maxStrenght);
         }
 
         _velocity = ((transform.position + new Vector3(target.x * transform.localScale.x, target.y)) - transform.position) * _LastTrueStrenght;
@@ -262,9 +187,9 @@ public class SlimeAI : MonoBehaviour
     //? Stores the size of the platform in a float array.
     private void SetPlatformSize() {
 
-        if(!isGrounded()) return;
+        if(!IsGrounded()) return;
 
-        if(isGrounded() && !IsCollidingWithPlatform(transform.position, .7f)) {
+        if(IsGrounded() && !IsCollidingWithPlatform(transform.position, .7f)) {
             scannedPlatform = false;
         }
 
@@ -321,8 +246,6 @@ public class SlimeAI : MonoBehaviour
     }
     #endregion
 
-
-
     #region CHECK METHODS
 
     //? used to check if the ray collides with anything.
@@ -340,7 +263,7 @@ public class SlimeAI : MonoBehaviour
     }
 
     //? checks what the slime is standing on.
-    private bool isGrounded() => Physics2D.Raycast(transform.position, Vector2.down, .5f, canStandOn);
+    public bool IsGrounded() => Physics2D.Raycast(transform.position, Vector2.down, .5f, canStandOn);
 
     #endregion
 
@@ -355,6 +278,22 @@ public class SlimeAI : MonoBehaviour
     }
     #endregion
 
+    #region HANDLING GAMEPLAY
+    //private void OnCollisionEnter2D(Collision2D collision) {
+    //    if(collision.gameObject.CompareTag("Player")) {
+    //        if(collision.GetContact(0).normal.y <= -0.9) {
+    //            collision.gameObject.GetComponent<PlayerMovement>().ReboundPlayer();
+    //            MS.AddSoul(1);
+    //            gameObject.SetActive(false);
+    //        }
+    //        else {
+    //            MS.DamagePlayer(30, collision.GetContact(0).normal);
+    //        }
+
+    //    }
+    //}
+    #endregion
+
 #if UNITY_EDITOR
 
     private void OnDrawGizmos() {
@@ -363,6 +302,8 @@ public class SlimeAI : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, playerDetectionSize);
             Gizmos.color = Color.red;
             Gizmos.DrawRay(transform.position, Vector2.down * .5f);
+            Gizmos.color = new Color(0.8f,0,0, 0.5f);
+            Gizmos.DrawSphere(transform.position + new Vector3(target.x * transform.localScale.x, target.y), .2f);
         }
     }
 #endif
