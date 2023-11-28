@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ParticleShader
-  m_Shader: {fileID: -6465566751694194690, guid: 155cd296619aae24e976af783e10c58c, type: 3}
+  m_Name: BarrierShaderMat
+  m_Shader: {fileID: -6465566751694194690, guid: 076fee68c23cd274e89ca15d98e8dbcf, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -20,10 +20,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bca59ab684b8b0248b1437debb8d20be, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,13 +34,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _NoiseScale: 2.5
+    - _PixelationLevel: 16
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _intensity: 1.5
+    - _frecuency: 1
+    - _intensity: 1.2
+    - _speed: 2
     m_Colors:
-    - _Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0}
+    - _Color: {r: 0.260413, g: 0.6061252, b: 0.7169812, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &2823313564038570912
+--- !u!114 &1157128212217791746
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

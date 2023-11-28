@@ -176,7 +176,6 @@ public class SlimeAI : MonoBehaviour
             if(CheckForCollision(_calculatedPosition)) break;
 
         }
-
         return _out;
     }
 

@@ -6,6 +6,7 @@ public class WalkerAnimator : MonoBehaviour
 {
 
     private Animator animator;
+    private Rigidbody2D rb2D;
 
     private static readonly int walk = Animator.StringToHash("Walk");
     private static readonly int idle = Animator.StringToHash("Idle");
@@ -15,6 +16,7 @@ public class WalkerAnimator : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
     private void ChangeAnimation() {
@@ -26,10 +28,12 @@ public class WalkerAnimator : MonoBehaviour
 
     private int GetState() {
 
+
+        return rb2D.velocity.x != 0 ? walk : idle;
         /* TODO:
-         * AÑADE LA LOGICA DE CUANDO SE DEBEN REPRODUCIR LAS ANIMACIONES
+         * Aï¿½ADE LA LOGICA DE CUANDO SE DEBEN REPRODUCIR LAS ANIMACIONES
          */
 
-        return 0; //! REGRESA LA ANIMACIÓN
+        return 0; //! REGRESA LA ANIMACIï¿½N
     }
 }
