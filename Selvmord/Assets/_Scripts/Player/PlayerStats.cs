@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
     public readonly int MaxHealthPoints = 500;
     public readonly int HealthSize = 100;
     public readonly int MaxSouls = 20;
+
     [Tooltip("Used to set the amount of souls necesary to heal.")]
     public readonly int SoulRequirement = 5;
     public int HealthPoints { private set; get; }

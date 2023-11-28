@@ -4,23 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.VisualScripting;
 
 public class MainSystem : MonoBehaviour
 {
     #region Variables
     //----------------  HUD ---------------------
-    [SerializeField] TextMeshProUGUI textSoul;
-    [SerializeField] TextMeshProUGUI textLife;
-    [SerializeField] Image HealthBar;
+    [SerializeField] Image[] HealthBar = new Image[5];
+    [SerializeField] Image SoulBar;
 
     [SerializeField] GameObject E;
 
     //-------- Principal Variables MS -----------
+    int GamePlaying;
+
     public float Health;
     int soul;
-    int life = 3;
+    int life;
+
     // ---------- Extra Variables MS -----------
     public float MaxHealth;
+    public float MaxSoul;
     private float CurrentHealth;
     bool healing = false;
     bool GetingDamage = false;
@@ -34,19 +38,21 @@ public class MainSystem : MonoBehaviour
     PlayerMovement PM;
     [SerializeField] float TimeLostControl;
     [SerializeField] float TimeImmortal;
+    bool inmortal = false;
     #endregion
 
     #region Start Method
     private void Start()
     {
+        ReloundPlayerPrefabs();
+
         // -------------- HUD -----------------
-        textLife.text = "X " + life;
-        textSoul.text = "X " + soul;
         CurrentHealth = Health;
 
         // -------- Activate spawn ------------
         SpawnActive();
-        WallActive(PlayerPrefs.GetInt("SpawnActive"));
+        WallDesactive();
+        WallActive(PlayerPrefs.GetInt("SpawnActive"+GamePlaying));
 
         // ------ Get Player Movement --------
         PM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -62,19 +68,47 @@ public class MainSystem : MonoBehaviour
         //------------ Testing area -------------
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            GetDamage();
+            DamagePlayer(30,new Vector2 (0,0));
 
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            GetHealing();
         }
 
         //---------------- HUD  ----------------
-        HealthBar.fillAmount = CurrentHealth / MaxHealth;
-        textLife.text = "X " + life;
-        textSoul.text = "X " + soul;
 
+        SoulBar.fillAmount = soul / MaxSoul;
+
+        HealthBar[life - 1].fillAmount = CurrentHealth / MaxHealth;
+        for (int i = 0; i < HealthBar.Length; i++)
+        {
+            if (i > life-1)
+            {
+                HealthBar[i].fillAmount = 0;
+            }
+        }
+
+        if(Health < 0)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                GetHealing();
+            }
+        }
+
+        HealingDamageEfect();
+    }
+    #endregion
+
+    #region Player Effects
+
+    void ReloundPlayerPrefabs()
+    {
+        GamePlaying = PlayerPrefs.GetInt("LastGame");
+        life = PlayerPrefs.GetInt("Life" + GamePlaying);
+        Health = PlayerPrefs.GetFloat("Heal" + GamePlaying);
+        soul = PlayerPrefs.GetInt("Soul" + GamePlaying);
+    }
+
+    void HealingDamageEfect()
+    {
         //---------- Healing Effect -----------
         if (healing)
         {
@@ -99,16 +133,19 @@ public class MainSystem : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region Player Effects
     public void DamagePlayer(int damage, Vector2 position)
     {
+        if (inmortal)
+        {
+            return;
+        }
+
         Health -= damage;
 
-        if (Health < 0 && life == 0)
+        if (Health < 0 && life == 1)
         {
-            SceneManager.LoadScene("GameOver");
+            GameOver();
+            return;
         }
 
         if (Health < 0)
@@ -116,7 +153,7 @@ public class MainSystem : MonoBehaviour
             Health = -1;
             E.SetActive(true);
             WallDesactive();
-            PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive"));
+            PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive" + GamePlaying));
         }
 
         StartCoroutine(LostControl());
@@ -124,29 +161,7 @@ public class MainSystem : MonoBehaviour
 
         PM.rebound(position);
 
-        GetingDamage = true;
-        healing = false;
-    }
-
-    public void GetDamage()
-    {
-        Health -= 30;
-
-        if (Health < 0 && life == 0)
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-
-        if (Health < 0)
-        {
-            Health = -1;
-            E.SetActive(true);
-            WallDesactive();
-            PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive"));
-        }
-
-        StartCoroutine(LostControl());
-        StartCoroutine(DesactiveColision());
+        PlayerPrefs.SetFloat("Heal" + GamePlaying, Health);
 
         GetingDamage = true;
         healing = false;
@@ -162,6 +177,14 @@ public class MainSystem : MonoBehaviour
             RemoveLife(1);
             RemoveSoul(5);
             E.SetActive(false);
+            Health = 100;
+            CurrentHealth= Health;
+
+            PlayerPrefs.SetInt("Life" + GamePlaying, life);
+            PlayerPrefs.SetFloat("Heal" + GamePlaying, Health);
+            PlayerPrefs.SetFloat("Soul" + GamePlaying, soul);
+
+            return;
         }
 
         //Provicional
@@ -175,11 +198,20 @@ public class MainSystem : MonoBehaviour
         {
             AddSoul(5);
         }
+
         Health = 100;
     }
 
     public void AddLife(int lifes)
     {
+        if (life > 4)
+        {
+            return;
+        }
+
+        CurrentHealth = 0;
+        healing = true;
+
         life += lifes;
     }
 
@@ -202,9 +234,10 @@ public class MainSystem : MonoBehaviour
     public void RemoveSoul(int souls)
     {
         soul -= souls;
+
         if (soul < 0)
         {
-            soul = 0;
+           soul = 0;
         }
     }
 
@@ -213,17 +246,17 @@ public class MainSystem : MonoBehaviour
     #region Walls and CheckPoint 
     public void AddCheckPoint(int num)
     {
-        PlayerPrefs.SetInt("SpawnActive", num);
+        PlayerPrefs.SetInt("SpawnActive" + GamePlaying, num);
         SpawnActive();
     }
 
     private void SpawnActive()
     {
-        conNum = PlayerPrefs.GetInt("SpawnActive");
+        conNum = PlayerPrefs.GetInt("SpawnActive" + GamePlaying);
 
         for (int i = conNum; i > 0; i--)
         {
-            //CheckPointsGO[i - 1].SetActive(false);
+            CheckPointsGO[i - 1].SetActive(false);
         }
 
     }
@@ -234,14 +267,14 @@ public class MainSystem : MonoBehaviour
 
         if (checkpoint >= 0)
         {
-            //Walls[checkpoint].SetActive(true);
+            Walls[checkpoint].SetActive(true);
         }
 
     }
 
     public void WallDesactive()
     {
-        int Point = PlayerPrefs.GetInt("SpawnActive");
+        int Point = PlayerPrefs.GetInt("SpawnActive" + GamePlaying);
 
         for (int i = Point; i < Walls.Length; i++)
         {
@@ -255,9 +288,9 @@ public class MainSystem : MonoBehaviour
 
     private IEnumerator DesactiveColision()
     {
-        Physics2D.IgnoreLayerCollision(7, 8, true);
+        inmortal= true;
         yield return new WaitForSeconds(TimeImmortal);
-        Physics2D.IgnoreLayerCollision(7, 8, false);
+        inmortal= false;
     }
 
     private IEnumerator LostControl()
@@ -265,6 +298,20 @@ public class MainSystem : MonoBehaviour
         InputManager.StopAllInputs(true);
         yield return new WaitForSeconds(TimeLostControl);
         InputManager.StopAllInputs(false);
+    }
+
+    private void GameOver()
+    {
+        Time.timeScale = 1f;
+        PlayerPrefs.SetFloat("CPX" + GamePlaying, 0);
+        PlayerPrefs.SetFloat("CPY" + GamePlaying, 0);
+        PlayerPrefs.SetFloat("SpawnConter" + GamePlaying, 0);
+        PlayerPrefs.SetInt("SpawnActive" + GamePlaying, 0);
+        PlayerPrefs.SetInt("LastGame" + GamePlaying, 0);
+        PlayerPrefs.SetInt("Life" + GamePlaying, 3);
+        PlayerPrefs.SetFloat("Heal" + GamePlaying, 100);
+        PlayerPrefs.SetFloat("Soul" + GamePlaying, 0);
+        SceneManager.LoadScene("UI_MainMenu");
     }
     #endregion
 }

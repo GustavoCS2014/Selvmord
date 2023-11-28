@@ -11,6 +11,10 @@ TagManager:
   - MainSystem
   - CheckPoint
   - Spikes
+  - FallDetector
+  - Enemy
+  - mainSystem
+  - ExtraJump
   layers:
   - Default
   - TransparentFX
@@ -19,9 +23,9 @@ TagManager:
   - Water
   - UI
   - Platforms
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Spikes
   - 
   - 
   - 

@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Threading.Tasks;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -54,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
 
     //? Dash
     private bool canDash = true;
+    static bool ItemDashCollect = false;
+
 
     private Vector2 movementInput;
     private int jumpInput;
@@ -84,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Vector2 VelocityRebound;
     [SerializeField] private float VelocityReboundPlayer;
+
     #endregion
 
     #region EVENTS HANDLER
@@ -311,6 +311,7 @@ public class PlayerMovement : MonoBehaviour
     #region WALL SLIDE
     private void WallSlide()
     {
+
         if (IsWalled() && !IsGrounded() && !IsOnPlatform() && !IsWallJumping)
         {
             //? Stops the player from sliding up when coming at a wall with upwards momentum, unless the player jumped from the floor while touching the wall.
@@ -336,6 +337,7 @@ public class PlayerMovement : MonoBehaviour
     #region WALL JUMP
     private async void WallJump()
     {
+
         if (IsWallJumping) return; //? Impedes the player from walljumping again while on a walljump.
 
         if (CanWallJump())
@@ -361,6 +363,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
+        if (!ItemDashCollect)
+        {
+            return;
+        }
+
         if (dashInput && canDash && !IsWalled() && !IsWallSliding)
         {
             DashCoroutine();

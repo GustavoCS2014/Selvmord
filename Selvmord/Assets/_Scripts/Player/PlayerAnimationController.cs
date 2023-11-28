@@ -46,6 +46,15 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private ParticleSystem HoodieDashParticles;
     [SerializeField] private ParticleSystem PantsDashParticles;
 
+    [Space(15)]
+    [Header("____ Sound ____")]
+    [SerializeField] private AudioClip MoveSound;
+    [SerializeField] private AudioClip GroundSound;
+    [SerializeField] private AudioClip DashSound;
+    [SerializeField] private AudioClip DamageSound;
+    [SerializeField] private AudioClip DeathSound;
+    [SerializeField] private AudioClip JumpSound;
+
     #endregion
 
     private void Awake() {
@@ -66,6 +75,7 @@ public class PlayerAnimationController : MonoBehaviour
         HandleLandParticles();
         
         HandleDoubleJumpParticles();
+
     }
 
     private void GetStateLastTick() {
@@ -145,6 +155,7 @@ public class PlayerAnimationController : MonoBehaviour
         if(wasFalling && player.IsGrounded()) {
             wasFalling = false;
             LandParticles.Play();
+
         }
     }
 

@@ -6,28 +6,39 @@ public class BulletFlyEnemy : MonoBehaviour
 {
     [SerializeField] float speedBullet;
     MainSystem MS;
+    
 
     private void Start()
     {
-        MS = GameObject.FindGameObjectWithTag("mainSystem").GetComponent<MainSystem>();
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
+       
     }
     void Update()
     {
         transform.Translate(Vector2.right * speedBullet * Time.deltaTime);
-        Invoke("TimeLife", 3f);
+        Invoke("Destroy", 4f);
     }
 
-    void TimeLife()
+    private void Destroy()
     {
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            MS.DamagePlayer(30, new Vector2(0,-35));
-            gameObject.SetActive(false);
+            MS.DamagePlayer(30, new Vector2(0,0));
+            Destroy(gameObject);
+
         }
     }
+
+    
 }

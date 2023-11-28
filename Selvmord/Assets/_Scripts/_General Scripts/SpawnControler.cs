@@ -7,6 +7,7 @@ public class SpawnControler : MonoBehaviour
 {
     #region Variable
     //----------- Help variable ------------
+    int GamePlaying;
     MainSystem MS;
     float health;
 
@@ -23,6 +24,7 @@ public class SpawnControler : MonoBehaviour
     #region Start Method
     void Start()
     {
+        GamePlaying = PlayerPrefs.GetInt("LastGame");
         MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
         RespawnPlayer();
 
@@ -59,20 +61,13 @@ public class SpawnControler : MonoBehaviour
     #region Spawn Method
     private void RespawnPlayer()
     {
-        if (PlayerPrefs.GetFloat("CPX") != 0)
-        {
-            transform.position = new Vector2(PlayerPrefs.GetFloat("CPX"), PlayerPrefs.GetFloat("CPY"));
-        }
-        else
-        {
-            transform.position = new Vector2(0, 0);
-        }
+        transform.position = new Vector2(PlayerPrefs.GetFloat("CPX"+GamePlaying), PlayerPrefs.GetFloat("CPY" + GamePlaying));
     }
 
     public void ReachedCheckPoint(float x, float y)
     {
-        PlayerPrefs.SetFloat("CPX", x);
-        PlayerPrefs.SetFloat("CPY", y);
+        PlayerPrefs.SetFloat("CPX" + GamePlaying, x);
+        PlayerPrefs.SetFloat("CPY" + GamePlaying, y);
     }
     #endregion
 
@@ -112,7 +107,7 @@ public class SpawnControler : MonoBehaviour
         {
             In = true;
 
-            if (InputManager.InteractiveKey)
+            if (Input.GetKey(KeyCode.F))
             {
                 conSec += 2 * (Time.deltaTime);
             }

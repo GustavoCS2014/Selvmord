@@ -9,12 +9,15 @@ public class CheckPoint : MonoBehaviour
     float conSec = 0;
     bool Enter = true;
 
+    int GamePlaying;
     MainSystem MS;
 
     private void Start()
     {
+        GamePlaying = PlayerPrefs.GetInt("LastGame");
         MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
-        PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive"));
+        PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive" + GamePlaying));
+
     }
     void Update()
     {
@@ -60,7 +63,7 @@ public class CheckPoint : MonoBehaviour
         if (collision.tag == "Player")
         {
 
-            if (InputManager.InteractiveKey)
+            if (Input.GetKey(KeyCode.F))
             {
                 conSec += 2 * (Time.deltaTime);
 

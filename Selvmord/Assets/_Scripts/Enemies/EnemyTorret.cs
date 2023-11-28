@@ -8,15 +8,17 @@ public class EnemyTorret : MonoBehaviour
     [SerializeField] bool ZoneActive;
 
     [SerializeField] Transform shootPoint;
-    [SerializeField] Transform Body;
     [SerializeField] GameObject bullet;
     [SerializeField] float DistanceActivation;
 
     private bool reloded = true;
 
+    private Animator _animator;
+
     private void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,12 +30,12 @@ public class EnemyTorret : MonoBehaviour
             {
                 float anguloRadianes = Mathf.Atan2(Player.position.y - transform.position.y, Player.position.x - transform.position.x);
                 float anguloGrados = (180 / Mathf.PI) * anguloRadianes;
-                Body.transform.rotation = Quaternion.Euler(0, 0, anguloGrados);
+                shootPoint.transform.rotation = Quaternion.Euler(0, 0, anguloGrados);
 
                 if (reloded)
                 {
+                    _animator.SetTrigger("Active");
                     reloded = false;
-                    Invoke("Shoot", 2f);
                 }
             }
         }
@@ -42,6 +44,11 @@ public class EnemyTorret : MonoBehaviour
     void Shoot()
     {
         Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        Invoke("Reloded", 1.5f);
+    }
+
+    void Reloded()
+    {
         reloded = true;
     }
     private void OnDrawGizmos()
@@ -60,7 +67,7 @@ public class EnemyTorret : MonoBehaviour
             {
                 float anguloRadianes = Mathf.Atan2(Player.position.y - transform.position.y, Player.position.x - transform.position.x);
                 float anguloGrados = (180 / Mathf.PI) * anguloRadianes;
-                Body.transform.rotation = Quaternion.Euler(0, 0, anguloGrados);
+                shootPoint.transform.rotation = Quaternion.Euler(0, 0, anguloGrados);
 
                 if (reloded)
                 {

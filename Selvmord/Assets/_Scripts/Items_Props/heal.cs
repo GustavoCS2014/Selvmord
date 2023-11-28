@@ -8,7 +8,7 @@ public class heal : MonoBehaviour
 
     private void Start()
     {
-        MS = GameObject.FindGameObjectWithTag("mainSystem").GetComponent<MainSystem>();
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -88,7 +88,6 @@ public class InputManager : MonoBehaviour
 
         MovementInput.x = Input.GetAxisRaw("Horizontal"); //? Gets horizontal movement input.
         MovementInput.y = Input.GetAxisRaw("Vertical"); //? Gets Vertical movement input.
-
     }
 
     private void DashInputHandler() {

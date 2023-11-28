@@ -18,19 +18,32 @@ public class EnemyBasic : MonoBehaviour
     private float WaitTime;
 
     [SerializeField] private float distance;
-    [SerializeField] private Transform GroundCheck;
+    [SerializeField] private Transform GroundCheck,StopPoint;
     [SerializeField] private LayerMask isGround;
 
     private bool Wait = false;
 
+    [Space(5)]
+    [Header("____ Sound ____")]
+    [SerializeField] private AudioClip WalkSound;
+    [SerializeField] private AudioClip CrySound;
+    private AudioSource audioSource;
+    private AudioClip LastAudio;
+
     MainSystem MS;
+    Animator _animator;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
+        _animator= GetComponent<Animator>();
 
         speed = Random.Range(SpeedMin, SpeedMax);
         WaitTime = Random.Range(WaitTimeMin, WaitTimeMax);
+
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     private void Awake()
@@ -40,21 +53,41 @@ public class EnemyBasic : MonoBehaviour
 
     private void Update()
     {
+       
+
         if (Mathf.Abs(transform.position.x - Player.position.x) < DistanceActivation)
         {
+            _animator.SetBool("Waiting",Wait);
+
             if (SwitchGroundCheck)
             {
                 if(!Wait)
                 {
                     rb.velocity = new Vector2(speed * transform.right.x, rb.velocity.y);
-                    RaycastHit2D informationFloor = Physics2D.Raycast(GroundCheck.position, Vector2.down, distance);
+                    ReproduceSound(WalkSound);
+
+                    RaycastHit2D GroundStop = Physics2D.Raycast(GroundCheck.position, Vector2.down, distance);
+
+                    if (!GroundStop)
+                    {
+                        speed -= (Time.deltaTime * speed);
+                    }
+
+                    RaycastHit2D informationFloor = Physics2D.Raycast(StopPoint.position, Vector2.down, distance);
 
                     if (!informationFloor)
                     {
-                        rb.velocity = new Vector2(0,0);
-                        Wait = true;
-                        Invoke("Spin", WaitTime);
+                        Stop();
                     }
+
+                    if(speed < 1)
+                    {
+                        Stop();
+                    }
+                }
+                else
+                {
+                    ReproduceSound(CrySound);
                 }
             }
             else
@@ -67,13 +100,22 @@ public class EnemyBasic : MonoBehaviour
 
                     if (informationFloor)
                     {
-                        rb.velocity = new Vector2(0, 0);
-                        Wait = true;
-                        Invoke("Spin", WaitTime);
+                        Stop();
                     }
                 }
             }
         }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
+    }
+
+    void Stop()
+    {
+        rb.velocity = new Vector2(0, 0);
+        Wait = true;
+        Invoke("Spin", WaitTime);
     }
 
     void Spin()
@@ -120,5 +162,14 @@ public class EnemyBasic : MonoBehaviour
             }
 
         }
+    }
+
+    public void ReproduceSound(AudioClip sound)
+    {
+        LastAudio = audioSource.isPlaying ? sound : null;
+
+        if (LastAudio == sound) return;
+        LastAudio = sound;
+        audioSource.PlayOneShot(sound);
     }
 }

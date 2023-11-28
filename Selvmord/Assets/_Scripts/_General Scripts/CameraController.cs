@@ -25,8 +25,8 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float yOffset;
 
-    private Transform StartPoint;
-    private Transform EndPoint;
+    Transform StartPoint;
+    Transform EndPoint;
 
     public static bool StartBossFight = false;
     #endregion
@@ -53,6 +53,7 @@ public class CameraController : MonoBehaviour
     #endregion
     private void Start()
     {
+        transform.position = new Vector2(PlayerPrefs.GetFloat("CPX"+ PlayerPrefs.GetInt("LastGame")), PlayerPrefs.GetFloat("CPY"+ PlayerPrefs.GetInt("LastGame")));
         StartPoint = GameObject.FindGameObjectWithTag("StartPoint").transform;
         EndPoint = GameObject.FindGameObjectWithTag("EndPoint").transform;
     }
@@ -85,11 +86,12 @@ public class CameraController : MonoBehaviour
     /// <param name="_time"> The lerp time to zoom the camera.</param>
     public static void ZoomCamera(float _targetZoom, float _time)
     {
+        /*
         //? Stores the current zoom level.
         float _currentZoom = Camera.main.orthographicSize;
         //? Smoothly transitions to the target zoom in the specified amount of time.
         Camera.main.orthographicSize = Mathf.MoveTowards(_currentZoom, _targetZoom, _time * Time.fixedDeltaTime);
-        if (Math.Abs(Camera.main.orthographicSize - _targetZoom) < .2f) Camera.main.orthographicSize = _targetZoom;
+        if (Math.Abs(Camera.main.orthographicSize - _targetZoom) < .2f) Camera.main.orthographicSize = _targetZoom;*/
     }
 
     private void BossFight()

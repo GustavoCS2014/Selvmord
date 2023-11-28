@@ -7,33 +7,37 @@ public class EnemyControler : MonoBehaviour
     [SerializeField] GameObject[] Enemys;
     [SerializeField] GameObject[] Spawns;
     [SerializeField] GameObject[] Items;
-    [SerializeField] GameObject Player;
     [SerializeField] GameObject SpawnPoint;
     [SerializeField] int distanceActivation;
     [SerializeField] int spawnConter;
     private bool active = true;
 
     MainSystem MS;
+    Transform Player;
 
     private void Start()
     {
-        MS = GameObject.FindGameObjectWithTag("mainSystem").GetComponent<MainSystem>();
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
+        ResertSpawns();
     }
+
+    private void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     void Update()
     {
         if (MS.Health < 0)
         {
             active = true;
 
-            if (PlayerPrefs.GetInt("SpawnConter") != spawnConter)
-            {
-                SpawnPoint.SetActive(false);
-            }
+            ResertSpawns();
         }
 
         if (active)
         {
-            if (Mathf.Abs(Player.transform.position.x - SpawnPoint.transform.position.x) < distanceActivation)
+            if (Mathf.Abs(Player.transform.position.x - transform.position.x) < distanceActivation)
             {
                 RespawnEnemy();
                 active = false;
@@ -59,6 +63,14 @@ public class EnemyControler : MonoBehaviour
         for (int i = 0; i < Items.Length; i++)
         {
             Items[i].SetActive(true);
+        }
+    }
+
+    private void ResertSpawns() {
+
+        if (PlayerPrefs.GetInt("SpawnConter") != spawnConter)
+        {
+            SpawnPoint.SetActive(false);
         }
     }
 
