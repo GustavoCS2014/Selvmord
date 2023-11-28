@@ -22,10 +22,10 @@ public class UI : MonoBehaviour
         btnSettings.clicked += () => MC.Settings();
         btnExit.clicked += () => MC.Quit();
     }
-
-    /*private void Start()
+    /*
+    private void Start()
     {
-        LastGame = PlayerPrefs.GetInt("LastGame");
+        PlayerPrefs.SetInt("LastGame", 0);
         PlayerPrefs.SetFloat("CPX" + 1, 0);
         PlayerPrefs.SetFloat("CPY" + 1, 0);
         PlayerPrefs.SetInt("SpawnConter" + 1, 0);

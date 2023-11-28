@@ -12,6 +12,9 @@ public class GamesMenu : MonoBehaviour
     public TextMeshProUGUI [] Game2;
     public TextMeshProUGUI [] Game3;
 
+    [SerializeField] private GameObject YesNoUI;
+    private int game;
+
     void Start()
     {
         Game1[0].text = "Heal: " + PlayerPrefs.GetFloat("Heal" + 1);
@@ -31,8 +34,8 @@ public class GamesMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("GameUI") == 1)
         {
-            PlayerPrefs.SetInt("LastGame", 1);
-            SceneManager.LoadScene("level1-1");
+            YesNoUI.SetActive(true);
+            game = 1;
         }
         else if (PlayerPrefs.GetInt("GameUI") == 2)
         {
@@ -51,8 +54,8 @@ public class GamesMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("GameUI") == 1)
         {
-            PlayerPrefs.SetInt("LastGame", 2);
-            SceneManager.LoadScene("level1-1");
+            YesNoUI.SetActive(true);
+            game = 2;
         }
         else if (PlayerPrefs.GetInt("GameUI") == 2)
         {
@@ -71,8 +74,8 @@ public class GamesMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("GameUI") == 1)
         {
-            PlayerPrefs.SetInt("LastGame", 3);
-            SceneManager.LoadScene("level1-1");
+            YesNoUI.SetActive(true);
+            game= 3;
         }
         else if (PlayerPrefs.GetInt("GameUI") == 2)
         {
@@ -90,5 +93,16 @@ public class GamesMenu : MonoBehaviour
     public void Return()
     {
         SceneManager.LoadScene("UI_MainMenu");
+    }
+
+    public void CloseUI()
+    {
+        YesNoUI.SetActive(false);
+    }
+
+    public void GamePlay()
+    {
+        PlayerPrefs.SetInt("LastGame", game);
+        SceneManager.LoadScene("level1-1");
     }
 }

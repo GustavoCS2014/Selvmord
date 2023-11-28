@@ -9,6 +9,7 @@ public class MenusControler : MonoBehaviour
 
     public bool GameIsPaused = false;
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject SaveGame;
     float con;
 
     // Update is called once per frame
@@ -61,36 +62,7 @@ public class MenusControler : MonoBehaviour
         menusEnabled = false;
         menuPause.SetActive(false);
     }
-
-    public void StartGame()
-    {
-        Time.timeScale = 1f;
-        PlayerPrefs.SetFloat("CPX", 0);
-        PlayerPrefs.SetFloat("CPY",0);
-        PlayerPrefs.SetFloat("SpawnConter", 0);
-        PlayerPrefs.SetInt("SpawnActive", 0);
-        SceneManager.LoadScene("Game");
-    }
-
-    public void GameOver()
-    {
-        Time.timeScale = 1f;
-        PlayerPrefs.SetFloat("CPX",0);
-        PlayerPrefs.SetFloat("CPY", 0);
-        PlayerPrefs.SetFloat("SpawnConter", 0);
-        PlayerPrefs.SetInt("SpawnActive", 0);
-        SceneManager.LoadScene("GameOver");
-    }
-    public void EndGame()
-    {
-        Time.timeScale = 1f;
-        PlayerPrefs.SetFloat("CPX", 0);
-        PlayerPrefs.SetFloat("CPY", 0);
-        PlayerPrefs.SetFloat("SpawnConter", 0);
-        PlayerPrefs.SetInt("SpawnActive", 0);
-        SceneManager.LoadScene("EndGame");
-    }
-
+        
     public void Quit()
     {
         Time.timeScale = 1f;
@@ -136,5 +108,11 @@ public class MenusControler : MonoBehaviour
     public void Return()
     {
         SceneManager.LoadScene("UI_MainMenu");
+    }
+
+    public void OpenSaveMenu()
+    {
+        menuPause.SetActive(false);
+        SaveGame.SetActive(true);
     }
 }

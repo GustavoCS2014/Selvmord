@@ -10,7 +10,7 @@ public class audioManager : MonoBehaviour
 
     private void Awake()
     {
-        /*
+        
         if (Instance == null)
         {
             Instance = this;
@@ -21,7 +21,7 @@ public class audioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        audioSource = GetComponent<AudioSource>();*/
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void ReproduceSound(AudioClip sound)

@@ -67,6 +67,7 @@ public class PlayerAnimationController : MonoBehaviour
     void Update()
     {
         ChangeAnimation();
+        
 
         GetStateLastTick();
 
@@ -155,7 +156,7 @@ public class PlayerAnimationController : MonoBehaviour
         if(wasFalling && player.IsGrounded()) {
             wasFalling = false;
             LandParticles.Play();
-
+            audioManager.Instance.ReproduceSound(GroundSound);
         }
     }
 
