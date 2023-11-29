@@ -7,7 +7,7 @@ public class MenusControler : MonoBehaviour
 {
     [SerializeField] bool menusEnabled = false;
 
-    public bool GameIsPaused = false;
+    public bool GameIsPaused;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject SaveGame;
     float con;
@@ -61,7 +61,6 @@ public class MenusControler : MonoBehaviour
         menuPause.SetActive(false);
         GameIsPaused = false;
         AS.ResumeMusic();
-        Debug.Log("Reanuda");
     }
 
     public void Pause()
@@ -71,7 +70,6 @@ public class MenusControler : MonoBehaviour
         GameIsPaused = true;
         menusEnabled = true;
         AS.StopMusic();
-        Debug.Log("Pausa :c");
     }
 
     public void menuPauseClose()
@@ -98,6 +96,7 @@ public class MenusControler : MonoBehaviour
         }
         else
         {
+            AS.MusicStartGame();
             SceneManager.LoadScene("level1-1");
         }
        

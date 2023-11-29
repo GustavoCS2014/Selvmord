@@ -8,9 +8,12 @@ public class audioManager : MonoBehaviour
     private AudioSource audioSource;
     private AudioClip LastAudio;
 
+    
+
     private void Awake()
     {
-        
+        Debug.Log("Sound");
+
         if (Instance == null)
         {
             Instance = this;
@@ -26,6 +29,10 @@ public class audioManager : MonoBehaviour
 
     public void ReproduceSound(AudioClip sound)
     {
+        /* MenusControler MC = GameObject.FindWithTag("MainSystem").GetComponent<MenusControler>();
+         Debug.Log(MC.GameIsPaused);
+
+         if (MC.GameIsPaused) return;*/
         LastAudio = audioSource.isPlaying ? sound : null;
 
         if (LastAudio == sound) return;

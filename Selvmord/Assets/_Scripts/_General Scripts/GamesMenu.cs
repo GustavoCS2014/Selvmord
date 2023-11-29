@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 public class GamesMenu : MonoBehaviour
 {
-    public TextMeshProUGUI [] Game1;
-    public TextMeshProUGUI [] Game2;
-    public TextMeshProUGUI [] Game3;
+    public TextMeshProUGUI[] Game1;
+    public TextMeshProUGUI[] Game2;
+    public TextMeshProUGUI[] Game3;
 
     [SerializeField] private GameObject YesNoUI;
     private int game;
@@ -20,6 +20,7 @@ public class GamesMenu : MonoBehaviour
     [SerializeField] AudioClip ClickSound;
     [SerializeField] AudioClip CloseSound;
 
+    AudioSettings AS;
     void Start()
     {
         Game1[0].text = "Heal: " + PlayerPrefs.GetFloat("Heal" + 1);
@@ -33,6 +34,8 @@ public class GamesMenu : MonoBehaviour
         Game3[0].text = "Heal: " + PlayerPrefs.GetFloat("Heal" + 3);
         Game3[1].text = "Souls: " + PlayerPrefs.GetFloat("Soul" + 3);
         Game3[2].text = "Lifes: " + PlayerPrefs.GetInt("Life" + 3);
+
+        AS = GameObject.FindWithTag("AudioManager").GetComponent<AudioSettings>();
     }
 
     public void Gameplay1()
@@ -46,7 +49,7 @@ public class GamesMenu : MonoBehaviour
         else if (PlayerPrefs.GetInt("GameUI") == 2)
         {
             PlayerPrefs.SetInt("LastGame", 1);
-            SceneManager.LoadScene("level1-1");
+            LoadLevel();
             audioManager.Instance.ReproduceClick(ClickSound);
         }
         else
@@ -68,7 +71,7 @@ public class GamesMenu : MonoBehaviour
         else if (PlayerPrefs.GetInt("GameUI") == 2)
         {
             PlayerPrefs.SetInt("LastGame", 2);
-            SceneManager.LoadScene("level1-1");
+            LoadLevel();
             audioManager.Instance.ReproduceClick(ClickSound);
         }
         else
@@ -85,12 +88,12 @@ public class GamesMenu : MonoBehaviour
         {
             audioManager.Instance.ReproduceClick(ClickSound);
             YesNoUI.SetActive(true);
-            game= 3;
+            game = 3;
         }
         else if (PlayerPrefs.GetInt("GameUI") == 2)
         {
             PlayerPrefs.SetInt("LastGame", 3);
-            SceneManager.LoadScene("level1-1");
+            LoadLevel();
             audioManager.Instance.ReproduceClick(ClickSound);
         }
         else
@@ -117,7 +120,7 @@ public class GamesMenu : MonoBehaviour
     {
         audioManager.Instance.ReproduceClick(ClickSound);
         ResetGame(game);
-        SceneManager.LoadScene("level1-1");
+        LoadLevel();
     }
 
     void ResetGame(int game)
@@ -130,5 +133,11 @@ public class GamesMenu : MonoBehaviour
         PlayerPrefs.SetInt("Life" + game, 3);
         PlayerPrefs.SetFloat("Heal" + game, 100);
         PlayerPrefs.SetFloat("Soul" + game, 0);
+    }
+
+    void LoadLevel()
+    {
+        AS.MusicStartGame();
+        SceneManager.LoadScene("level1-1");
     }
 }

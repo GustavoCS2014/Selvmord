@@ -59,17 +59,6 @@ public class AudioSettings : MonoBehaviour
         Invoke("PlayMusic", 1f);
     }
 
-    private void Update()
-    {/*
-            if(SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            if (!Music.isPlaying) CurrentMusic= null;
-            if (CurrentMusic == GameMusic) return;
-            Music.Stop();
-            PlayMusic(GameMusic);
-        }*/
-    }
-
     void PlayMusic()
     {
         AudioGroup = GameObject.FindWithTag("Music");
@@ -181,7 +170,12 @@ public class AudioSettings : MonoBehaviour
 
     public void ResumeMusic()
     {
-        Music.Play();
+        Music.UnPause();
     }
 
+    public void MusicStartGame()
+    {
+        Music.Stop();
+        PlayMusic(GameMusic);
+    }
 }
