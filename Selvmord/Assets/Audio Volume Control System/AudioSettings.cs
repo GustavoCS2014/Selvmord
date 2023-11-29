@@ -44,6 +44,7 @@ public class AudioSettings : MonoBehaviour
     private GameObject AudioGroup;
     private AudioSource Music;
 
+    private bool isPlaying = false;
     MenusControler MC;
     private void Awake()
     {
@@ -56,15 +57,26 @@ public class AudioSettings : MonoBehaviour
 
     private void Start()
     {
-        Invoke("PlayMusic", 1f);
+        Invoke("PlayMusic", 0.75f);
+    }
+
+    private void Update()
+    {
+        if (!isPlaying) return;
+
+        if (!Music.isPlaying)
+        {
+            Music.PlayOneShot(CurrentMusic);
+        }
     }
 
     void PlayMusic()
     {
         AudioGroup = GameObject.FindWithTag("Music");
         Music = AudioGroup.GetComponent<AudioSource>();
-
-        PlayMusic(StartMusic);
+        Music.Play();
+        isPlaying= true;
+        CurrentMusic = StartMusic;
     }
 
     private void PlayMusic(AudioClip sound)
@@ -165,17 +177,21 @@ public class AudioSettings : MonoBehaviour
 
     public void StopMusic()
     {
+        isPlaying = false;
         Music.Pause();
+
     }
 
     public void ResumeMusic()
     {
         Music.UnPause();
+        isPlaying = true;
     }
 
     public void MusicStartGame()
     {
         Music.Stop();
         PlayMusic(GameMusic);
+        CurrentMusic = GameMusic;
     }
 }

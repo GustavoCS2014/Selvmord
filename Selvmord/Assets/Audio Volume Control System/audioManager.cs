@@ -12,8 +12,6 @@ public class audioManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Sound");
-
         if (Instance == null)
         {
             Instance = this;

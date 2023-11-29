@@ -19,10 +19,19 @@ public class MenusControler : MonoBehaviour
     GameObject AsGO;
     AudioSettings AS;
 
+    AudioSource AuSourse;
+
     private void Awake()
     {
         AsGO = GameObject.FindWithTag("AudioManager");
         AS = AsGO.GetComponent<AudioSettings>();
+        AuSourse = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        if (AuSourse == null) return;
+        else AuSourse.Pause();
     }
 
     // Update is called once per frame
@@ -61,6 +70,7 @@ public class MenusControler : MonoBehaviour
         menuPause.SetActive(false);
         GameIsPaused = false;
         AS.ResumeMusic();
+        AuSourse.Pause();
     }
 
     public void Pause()
@@ -70,6 +80,15 @@ public class MenusControler : MonoBehaviour
         GameIsPaused = true;
         menusEnabled = true;
         AS.StopMusic();
+        AuSourse.Play();
+    }
+
+    public void PauseUI()
+    {
+        Time.timeScale = 0f;
+        menuPause.SetActive(true);
+        GameIsPaused = true;
+        menusEnabled = true;
     }
 
     public void menuPauseClose()

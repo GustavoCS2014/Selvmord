@@ -11,6 +11,11 @@ public class UlMenuPause : MonoBehaviour
     [SerializeField] GameObject Settings;
     [SerializeField] GameObject RetrunToMenu;
 
+    [Space(5)]
+    [Header("---- Sound Efects ----")]
+    [SerializeField] AudioClip ClickSound;
+    [SerializeField] AudioClip ReturnSound;
+
     private void OnEnable()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
@@ -22,33 +27,39 @@ public class UlMenuPause : MonoBehaviour
         btnContinue.clicked += () => MC.Resume();
         btnNewGame.clicked += () => settings();
         btnLoad.clicked += () => ReturnToMenu();
+
+        
     }
 
     void settings()
     {
         Settings.SetActive(true);
         MC.menuPauseClose();
+        audioManager.Instance.ReproduceClick(ClickSound);
     }
 
     public void CloseSettings()
     {
         Settings.SetActive(false);
+        audioManager.Instance.ReproduceClick(ReturnSound);
     }
 
     void ReturnToMenu()
     {
         MC.menuPauseClose();
         RetrunToMenu.SetActive(true);
+        audioManager.Instance.ReproduceClick(ReturnSound);
     }
     public void pause()
     {
         Settings.SetActive(false);
-        MC.Pause();
+        MC.PauseUI();
     }
 
     public void YesOption() 
     {
         SceneManager.LoadScene("UI_MainMenu");
+        audioManager.Instance.ReproduceClick(ClickSound);
     }
 
     public void NoOption()
@@ -63,11 +74,13 @@ public class UlMenuPause : MonoBehaviour
         PlayerPrefs.SetFloat("Heal" + game, 100);
         PlayerPrefs.SetFloat("Soul" + game, 0);
         SceneManager.LoadScene("UI_MainMenu");
+        audioManager.Instance.ReproduceClick(ClickSound);
     }
 
     public void CloseOptions()
     {
         RetrunToMenu.SetActive(false);
         MC.Pause();
+        audioManager.Instance.ReproduceClick(ReturnSound);
     }
 }
