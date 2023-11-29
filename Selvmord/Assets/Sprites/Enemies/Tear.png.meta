@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6110cd7011c3cca49bbe5aeb844ab373
+guid: ab5bd71d04554db488a217bcd9a1ee68
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -114,7 +114,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: d307d993320017145a095516f75159c0, type: 3}
+    - texture: {fileID: 2800000, guid: 8c658493d2df8044cb797b299f997b0f, type: 3}
       name: _EmissiveTex
     nameFileIdTable: {}
   spritePackingTag: 

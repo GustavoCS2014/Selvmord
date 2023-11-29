@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lvl1Shine
-  m_Shader: {fileID: -6465566751694194690, guid: eb27ba6332060e94f85ba4e2db0c125e, type: 3}
+  m_Name: TurretMat
+  m_Shader: {fileID: -6465566751694194690, guid: 67e01b5ed92709a4e8f230da36fc29cb, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -20,15 +20,11 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Emission:
-        m_Texture: {fileID: 2800000, guid: 34b6636fcd10c8b43bffeb8fe0d558d2, type: 3}
+    - _EmissiveTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainText:
-        m_Texture: {fileID: 2800000, guid: f9689a160b1c6974c931041c1178b054, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NonShine:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -49,10 +45,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BloomColor: {r: 0.7877358, g: 0.8584906, b: 1, a: 1}
-    - _Dir: {r: 0, g: -0.1, b: 0, a: 0}
+    - _IntensityHDR: {r: 0.22745098, g: 0.9372549, b: 0.8862745, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &2438886650580224883
+--- !u!114 &8058983777723365700
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
