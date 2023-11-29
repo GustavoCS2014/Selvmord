@@ -16,6 +16,6 @@ public class MusicAudioSource : MonoBehaviour
 
     void OnDestroy()
     {
-        audioSettings.RemoveMeFromMusicAudioSources(audioSource);
+        //audioSettings.RemoveMeFromMusicAudioSources(audioSource);
     }
 }

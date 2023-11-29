@@ -105,6 +105,27 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: SpikesTrap_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 494e1b361e78d214a9d975a09e81de81
+      internalID: -2074955719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: SpikesTrap_1
       rect:
         serializedVersion: 2
@@ -119,7 +140,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7a2010714741634ebffb7a46a2d6b11
+      spriteID: a1d558c640a5209429122a2052a0c72a
       internalID: -455904217
       vertices: []
       indices: 
@@ -140,7 +161,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 096e61714e38eb44f8e5359d282803c2
+      spriteID: 8567f95cdb1ad264592ebe9d25866c75
       internalID: 1082229421
       vertices: []
       indices: 
@@ -161,7 +182,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82db693c3612d304381662da5738347f
+      spriteID: fabb73a3141f6894fa3ce75c9998d029
       internalID: -647036407
       vertices: []
       indices: 
@@ -182,29 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 432fcc34819a76c4bbab5f5f810c1da7
+      spriteID: 830003762f405d14590d77e358069a93
       internalID: 268571987
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpikesTrap_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 616850291361e174aa35cb37c02ecb09
-      internalID: -2074955719
       vertices: []
       indices: 
       edges: []
@@ -224,50 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7e66fbb32edc2c45b03630fc2bc2611
+      spriteID: 6c1661409d70bf54a946f27252ea1cd8
       internalID: 518622285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpikesTrap_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37def4e7d00dc5d46a04a6b637fe8b81
-      internalID: -457626153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpikesTrap_9
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41d52f43539166846b331def9d7928ea
-      internalID: -1419660138
       vertices: []
       indices: 
       edges: []
@@ -287,8 +245,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f85364abe90eea47ada6fe9bf324c01
+      spriteID: 9f7e93b8e83bab2459c9e6ccd0749171
       internalID: 1286891689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpikesTrap_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f741646b8b93634884a15e075e350fb
+      internalID: -457626153
       vertices: []
       indices: 
       edges: []
@@ -308,8 +287,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38fa534b38347064faf9a0f30fa0951d
+      spriteID: 02f125aa20c40884ca6bc3d0ddf1ecfc
       internalID: -312637643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpikesTrap_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de7270cdfb9d8764d9810e9c15ab8b37
+      internalID: -1419660138
       vertices: []
       indices: 
       edges: []

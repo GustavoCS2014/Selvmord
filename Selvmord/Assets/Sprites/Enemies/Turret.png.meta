@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 794947b2dac031c468193abb3c36bd6f
-      internalID: 485852267
+      spriteID: 3d6dd1ff36eac904fab5a927a8c031cf
+      internalID: -348708123
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58119c3bd4e6c1843ac6baae6f4a242c
-      internalID: -905711547
+      spriteID: 6b17701f1c7427b4dba7a97ecc9e922b
+      internalID: 1144817082
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75aca93e0960dbf4281444c1db90b714
-      internalID: 1021101604
+      spriteID: 9f099b43e6b3d3b4ebe91b12c5d77a18
+      internalID: -505471519
       vertices: []
       indices: 
       edges: []
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b21f2a89eac2eb8438050d5dce06a00d
-      internalID: -292602534
+      spriteID: e88f9c695b415cd478ee422f17169946
+      internalID: 831166545
       vertices: []
       indices: 
       edges: []
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdc0368b5953b0744a6f395b8819589d
-      internalID: -329501594
+      spriteID: c2967a7f2a67c744480de0be88f78109
+      internalID: 315854354
       vertices: []
       indices: 
       edges: []
@@ -224,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05599b8ce71b27d4ea8f1143761bf964
-      internalID: -738394689
+      spriteID: 496b3dc007fd883499cca3d983238392
+      internalID: 114276449
       vertices: []
       indices: 
       edges: []
@@ -245,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b8c6f6196e8c1640878c87eb94a94c7
-      internalID: -1553318475
+      spriteID: 02f4f22384818e047a438d46fb69cad8
+      internalID: 225034652
       vertices: []
       indices: 
       edges: []
@@ -266,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6731cc27c26bf884ca46bfa858e9a6da
-      internalID: 310663115
+      spriteID: 72e3f7e4a2c2ce14cb693ce538f372cd
+      internalID: -1113494610
       vertices: []
       indices: 
       edges: []
@@ -287,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f0bd1db3d09db74cab3c19efbd03536
-      internalID: -43965282
+      spriteID: b46f6e8ec280fad46a09e5b999d33c2e
+      internalID: -146608204
       vertices: []
       indices: 
       edges: []
@@ -308,8 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af3d86001420d34449322d23c43eb2c0
-      internalID: -2097029717
+      spriteID: 174484cb48715b14583aef843ee25344
+      internalID: 479473411
       vertices: []
       indices: 
       edges: []
@@ -329,8 +329,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c150c7083b5bf2e4e920456d94bf8d08
-      internalID: 1802426400
+      spriteID: 980485b641ac27f429f5c1e8695c4d26
+      internalID: 1099069413
       vertices: []
       indices: 
       edges: []
@@ -350,8 +350,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2277aef2097499a449c443b45f155f43
-      internalID: 1873443531
+      spriteID: 5d204c4c8d2fb234d9a16c2efa3d96a2
+      internalID: -1925612441
       vertices: []
       indices: 
       edges: []
@@ -371,8 +371,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 208a4a6f2e81f374b976d4d468478cab
-      internalID: -127295455
+      spriteID: 17a9c09a9d0c39042ae5c1e654b94c71
+      internalID: 1720490235
       vertices: []
       indices: 
       edges: []
@@ -392,8 +392,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 471250005b34b8649a2fbb0ea33050c3
-      internalID: 57445790
+      spriteID: 15c3127f336139247b5d5c80cd43ec0f
+      internalID: -1953156175
       vertices: []
       indices: 
       edges: []
@@ -413,8 +413,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d23c3f03c62f3a345b0e9f96dc22b8ba
-      internalID: 1138082185
+      spriteID: ca73c1f8f3020364e93f015665f979e9
+      internalID: 629522099
       vertices: []
       indices: 
       edges: []
@@ -434,8 +434,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1cc04f5b76e2bb429bcdae88158b4ee
-      internalID: 1987432899
+      spriteID: 84e520071ae625c49b0010fae92efdf9
+      internalID: 1154569026
       vertices: []
       indices: 
       edges: []
@@ -449,24 +449,26 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 223f43a7ae5b5fb4c94e71146067b278, type: 3}
+      name: _EmissiveTex
     nameFileIdTable:
-      Turret_0: 485852267
-      Turret_1: -905711547
-      Turret_10: 1802426400
-      Turret_11: 1873443531
-      Turret_12: -127295455
-      Turret_13: 57445790
-      Turret_14: 1138082185
-      Turret_15: 1987432899
-      Turret_2: 1021101604
-      Turret_3: -292602534
-      Turret_4: -329501594
-      Turret_5: -738394689
-      Turret_6: -1553318475
-      Turret_7: 310663115
-      Turret_8: -43965282
-      Turret_9: -2097029717
+      Turret_0: -348708123
+      Turret_1: 1144817082
+      Turret_10: 1099069413
+      Turret_11: -1925612441
+      Turret_12: 1720490235
+      Turret_13: -1953156175
+      Turret_14: 629522099
+      Turret_15: 1154569026
+      Turret_2: -505471519
+      Turret_3: 831166545
+      Turret_4: 315854354
+      Turret_5: 114276449
+      Turret_6: 225034652
+      Turret_7: -1113494610
+      Turret_8: -146608204
+      Turret_9: 479473411
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

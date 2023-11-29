@@ -12,6 +12,19 @@ public class MenusControler : MonoBehaviour
     [SerializeField] GameObject SaveGame;
     float con;
 
+    [Space  (5)]
+    [Header("---- Sound Efects ----")]
+    [SerializeField] AudioClip ClickSound;
+
+    GameObject AsGO;
+    AudioSettings AS;
+
+    private void Awake()
+    {
+        AsGO = GameObject.FindWithTag("AudioManager");
+        AS = AsGO.GetComponent<AudioSettings>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -47,6 +60,8 @@ public class MenusControler : MonoBehaviour
         Time.timeScale = 1f;
         menuPause.SetActive(false);
         GameIsPaused = false;
+        AS.ResumeMusic();
+        Debug.Log("Reanuda");
     }
 
     public void Pause()
@@ -55,6 +70,8 @@ public class MenusControler : MonoBehaviour
         menuPause.SetActive(true);
         GameIsPaused = true;
         menusEnabled = true;
+        AS.StopMusic();
+        Debug.Log("Pausa :c");
     }
 
     public void menuPauseClose()
@@ -65,17 +82,15 @@ public class MenusControler : MonoBehaviour
         
     public void Quit()
     {
+        audioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 1f;
         Application.Quit();
     }
 
-    public void Test()
-    {
-        Debug.Log("Hola_");
-    }
-
     public void Continue()
     {
+        audioManager.Instance.ReproduceClick(ClickSound);
+
         if (PlayerPrefs.GetInt("LastGame") == 0)
         {
             menuPause.SetActive(true);
@@ -90,29 +105,39 @@ public class MenusControler : MonoBehaviour
 
     public void NewGame()
     {
-        PlayerPrefs.SetInt("GameUI", 1);
+        ClickSoundBottom();
+        PlayerPrefs.SetInt ("GameUI", 1);
         SceneManager.LoadScene("UI_Games");
     }
 
     public void LoadGame()
     {
+        audioManager.Instance.ReproduceClick(ClickSound);
         PlayerPrefs.SetInt("GameUI", 2);
         SceneManager.LoadScene("UI_Games");
     }
 
     public void Settings()
     {
+        audioManager.Instance.ReproduceClick(ClickSound);
         SceneManager.LoadScene("AudioSystem");
     }
 
     public void Return()
     {
+        audioManager.Instance.ReproduceClick(ClickSound);
         SceneManager.LoadScene("UI_MainMenu");
     }
 
     public void OpenSaveMenu()
     {
+        
         menuPause.SetActive(false);
         SaveGame.SetActive(true);
+    }
+
+    private void ClickSoundBottom()
+    {
+        audioManager.Instance.ReproduceClick(ClickSound);
     }
 }

@@ -15,6 +15,11 @@ public class GamesMenu : MonoBehaviour
     [SerializeField] private GameObject YesNoUI;
     private int game;
 
+    [Space(5)]
+    [Header("---- Sound Efects ----")]
+    [SerializeField] AudioClip ClickSound;
+    [SerializeField] AudioClip CloseSound;
+
     void Start()
     {
         Game1[0].text = "Heal: " + PlayerPrefs.GetFloat("Heal" + 1);
@@ -34,6 +39,7 @@ public class GamesMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("GameUI") == 1)
         {
+            audioManager.Instance.ReproduceClick(ClickSound);
             YesNoUI.SetActive(true);
             game = 1;
         }
@@ -41,6 +47,7 @@ public class GamesMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("LastGame", 1);
             SceneManager.LoadScene("level1-1");
+            audioManager.Instance.ReproduceClick(ClickSound);
         }
         else
         {
@@ -54,6 +61,7 @@ public class GamesMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("GameUI") == 1)
         {
+            audioManager.Instance.ReproduceClick(ClickSound);
             YesNoUI.SetActive(true);
             game = 2;
         }
@@ -61,6 +69,7 @@ public class GamesMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("LastGame", 2);
             SceneManager.LoadScene("level1-1");
+            audioManager.Instance.ReproduceClick(ClickSound);
         }
         else
         {
@@ -74,6 +83,7 @@ public class GamesMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("GameUI") == 1)
         {
+            audioManager.Instance.ReproduceClick(ClickSound);
             YesNoUI.SetActive(true);
             game= 3;
         }
@@ -81,6 +91,7 @@ public class GamesMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("LastGame", 3);
             SceneManager.LoadScene("level1-1");
+            audioManager.Instance.ReproduceClick(ClickSound);
         }
         else
         {
@@ -92,17 +103,32 @@ public class GamesMenu : MonoBehaviour
 
     public void Return()
     {
+        audioManager.Instance.ReproduceClick(CloseSound);
         SceneManager.LoadScene("UI_MainMenu");
     }
 
     public void CloseUI()
     {
+        audioManager.Instance.ReproduceClick(CloseSound);
         YesNoUI.SetActive(false);
     }
 
     public void GamePlay()
     {
-        PlayerPrefs.SetInt("LastGame", game);
+        audioManager.Instance.ReproduceClick(ClickSound);
+        ResetGame(game);
         SceneManager.LoadScene("level1-1");
+    }
+
+    void ResetGame(int game)
+    {
+        PlayerPrefs.SetInt("LastGame", game);
+        PlayerPrefs.SetFloat("CPX" + game, 0);
+        PlayerPrefs.SetFloat("CPY" + game, 0);
+        PlayerPrefs.SetInt("SpawnConter" + game, 0);
+        PlayerPrefs.SetInt("SpawnActive" + game, 0);
+        PlayerPrefs.SetInt("Life" + game, 3);
+        PlayerPrefs.SetFloat("Heal" + game, 100);
+        PlayerPrefs.SetFloat("Soul" + game, 0);
     }
 }

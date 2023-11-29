@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class UIElementInitializer : MonoBehaviour
 {
+    GameObject AsGO;
+    AudioSettings AS;
+
     public enum UIElementType { 
         
         MASTER_Slider,
@@ -17,19 +20,26 @@ public class UIElementInitializer : MonoBehaviour
 
     private void Start()
     {
+        AsGO = GameObject.FindWithTag("AudioManager");
+        AS = AsGO.GetComponent<AudioSettings>();
+        
+        float Master = AS.GetMasterVolume();
+        float SFX = AS.GetSFXVolumeUI();
+        float Music = AS.GetMusicVolumeUI();
+
         switch (type)
         {
             case UIElementType.SFX_Slider:
                 slider = GetComponent<Slider>();
-                slider.value = AudioSettings.audioSettings.GetSFXVolumeUI();
+                slider.value = SFX;
                 break;
             case UIElementType.MUSIC_Slider:
                 slider = GetComponent<Slider>();
-                slider.value = AudioSettings.audioSettings.GetMusicVolumeUI();
+                slider.value = Music;
                 break;
            case UIElementType.MASTER_Slider:
                 slider = GetComponent<Slider>();
-                slider.value = AudioSettings.audioSettings.GetMasterVolume();
+                slider.value = Master;
                 break;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AudioSettings : MonoBehaviour
@@ -17,9 +18,9 @@ public class AudioSettings : MonoBehaviour
     private float ValuemusicVolume;
     private float ValuesfxVolume;
 
-    float masterDefaultVolume = 1f;
-    float musicDefaultVolume = 1f;
-    float sfxDefaultVolume = 1f;
+    float masterDefaultVolume = 0.5f;
+    float musicDefaultVolume = 0.5f;
+    float sfxDefaultVolume = 0.5f;
 
     string masterVolumeDataName = "master-volume";
     string musicVolumeDataName = "music-volume";
@@ -33,12 +34,57 @@ public class AudioSettings : MonoBehaviour
     [SerializeField]
     private int sfxAudioSourcesCount = 0;
 
+    [Space(5)]
+    [Header("---- Music ----")]
+
+    public AudioClip StartMusic;
+    public AudioClip GameMusic;
+    private AudioClip CurrentMusic;
+
+    private GameObject AudioGroup;
+    private AudioSource Music;
+
+    MenusControler MC;
     private void Awake()
     {
         audioSettings = this;
         musicAudioSources = new List<AudioSource>();
         sfxAudioSources = new List<AudioSource>();
         LoadSavedSettings();
+        MC = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MenusControler>();
+    }
+
+    private void Start()
+    {
+        Invoke("PlayMusic", 1f);
+    }
+
+    private void Update()
+    {/*
+            if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            if (!Music.isPlaying) CurrentMusic= null;
+            if (CurrentMusic == GameMusic) return;
+            Music.Stop();
+            PlayMusic(GameMusic);
+        }*/
+    }
+
+    void PlayMusic()
+    {
+        AudioGroup = GameObject.FindWithTag("Music");
+        Music = AudioGroup.GetComponent<AudioSource>();
+
+        PlayMusic(StartMusic);
+    }
+
+    private void PlayMusic(AudioClip sound)
+    {
+        CurrentMusic = Music.isPlaying ? sound : null;
+
+        if (CurrentMusic == sound) return;
+        CurrentMusic = sound;
+        Music.PlayOneShot(sound);
     }
 
     void LoadSavedSettings()
@@ -128,5 +174,14 @@ public class AudioSettings : MonoBehaviour
         sfxAudioSourcesCount = sfxAudioSources.Count;
     }
 
+    public void StopMusic()
+    {
+        Music.Pause();
+    }
+
+    public void ResumeMusic()
+    {
+        Music.Play();
+    }
 
 }

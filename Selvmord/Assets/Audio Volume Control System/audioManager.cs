@@ -32,4 +32,9 @@ public class audioManager : MonoBehaviour
         LastAudio = sound;
         audioSource.PlayOneShot(sound);
     }
+
+    public void ReproduceClick(AudioClip sound)
+    {
+        audioSource.PlayOneShot(sound);
+    }
 }

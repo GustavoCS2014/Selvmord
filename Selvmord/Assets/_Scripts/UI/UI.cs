@@ -22,6 +22,7 @@ public class UI : MonoBehaviour
         btnSettings.clicked += () => MC.Settings();
         btnExit.clicked += () => MC.Quit();
     }
+
     /*
     private void Start()
     {

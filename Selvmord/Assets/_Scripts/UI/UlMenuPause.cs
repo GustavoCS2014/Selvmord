@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class UlMenuPause : MonoBehaviour
@@ -42,6 +43,31 @@ public class UlMenuPause : MonoBehaviour
     public void pause()
     {
         Settings.SetActive(false);
+        MC.Pause();
+    }
+
+    public void YesOption() 
+    {
+        SceneManager.LoadScene("UI_MainMenu");
+    }
+
+    public void NoOption()
+    {
+        int game = PlayerPrefs.GetInt("LastGame");
+        PlayerPrefs.SetInt("LastGame", 0);
+        PlayerPrefs.SetFloat("CPX" + game, 0);
+        PlayerPrefs.SetFloat("CPY" + game, 0);
+        PlayerPrefs.SetInt("SpawnConter" + game, 0);
+        PlayerPrefs.SetInt("SpawnActive" + game, 0);
+        PlayerPrefs.SetInt("Life" + game, 3);
+        PlayerPrefs.SetFloat("Heal" + game, 100);
+        PlayerPrefs.SetFloat("Soul" + game, 0);
+        SceneManager.LoadScene("UI_MainMenu");
+    }
+
+    public void CloseOptions()
+    {
+        RetrunToMenu.SetActive(false);
         MC.Pause();
     }
 }

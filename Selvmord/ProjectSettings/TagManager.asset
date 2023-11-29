@@ -15,6 +15,9 @@ TagManager:
   - Enemy
   - mainSystem
   - ExtraJump
+  - AudioManager
+  - Music
+  - SFX
   layers:
   - Default
   - TransparentFX
