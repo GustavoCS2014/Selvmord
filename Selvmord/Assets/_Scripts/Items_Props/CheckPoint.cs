@@ -69,7 +69,7 @@ public class CheckPoint : MonoBehaviour
 
                 if (conSec / 1 >= 1)
                 {
-                    collision.GetComponent<SpawnControler>().ReachedCheckPoint(transform.position.x, transform.position.y);
+                    collision.GetComponent<SpawnControler>().ReachedCheckPoint(transform.position.x, transform.position.y+2);
                     MS.AddCheckPoint(PlayerPrefs.GetInt("SpawnConter"));
                     this.gameObject.SetActive(false);
                 }

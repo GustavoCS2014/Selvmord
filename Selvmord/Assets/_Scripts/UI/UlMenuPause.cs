@@ -60,6 +60,7 @@ public class UlMenuPause : MonoBehaviour
     {
         SceneManager.LoadScene("UI_MainMenu");
         audioManager.Instance.ReproduceClick(ClickSound);
+        Time.timeScale = 1f;
     }
 
     public void NoOption()
@@ -75,6 +76,7 @@ public class UlMenuPause : MonoBehaviour
         PlayerPrefs.SetFloat("Soul" + game, 0);
         SceneManager.LoadScene("UI_MainMenu");
         audioManager.Instance.ReproduceClick(ClickSound);
+        Time.timeScale = 1f;
     }
 
     public void CloseOptions()

@@ -37,7 +37,7 @@ public class EnemyControler : MonoBehaviour
 
         if (active)
         {
-            if (Mathf.Abs(Player.transform.position.x - transform.position.x) < distanceActivation)
+            if (Mathf.Abs(Player.transform.position.x - transform.position.x) < distanceActivation && Mathf.Abs(transform.position.y - Player.position.y) < distanceActivation)
             {
                 RespawnEnemy();
                 active = false;
@@ -60,6 +60,12 @@ public class EnemyControler : MonoBehaviour
             Enemys[i].SetActive(true);
             Enemys[i].transform.position = Spawns[i].transform.position;
         }
+
+        if (Items.Length < 1)
+        {
+            return;
+        }
+
         for (int i = 0; i < Items.Length; i++)
         {
             Items[i].SetActive(true);

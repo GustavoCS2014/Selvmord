@@ -71,6 +71,7 @@ public class SpawnControler : MonoBehaviour
     }
     #endregion
 
+
     #region Collision Method
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -112,6 +113,18 @@ public class SpawnControler : MonoBehaviour
                 conSec += 2 * (Time.deltaTime);
             }
         }
+    }
+
+    public void ReturnPlayerSpawn()
+    {
+        int SpawnConter = PlayerPrefs.GetInt("SpawnConter");
+
+        if (SpawnConter < 1)
+        {
+            transform.position = new Vector2(PlayerPrefs.GetFloat("CPX" + GamePlaying), PlayerPrefs.GetFloat("CPY" + GamePlaying));
+            return;
+        }
+        transform.position = new Vector3(MS.CheckPointsGO[SpawnConter - 1].transform.position.x, MS.CheckPointsGO[SpawnConter - 1].transform.position.y + 2, 0);
     }
     #endregion
 }

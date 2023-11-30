@@ -48,9 +48,9 @@ GameObject:
   - component: {fileID: 7008831957381634457}
   - component: {fileID: 1481494887134113645}
   - component: {fileID: 4506322084204766898}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9710ddab4333b346997b198ac1bba01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowDebugRays: 0
+  ShowDebugRays: 1
   minStrenght: 3
   maxStrenght: 8
   strenghtIncrementSteps: 10
@@ -232,7 +232,7 @@ MonoBehaviour:
     m_Bits: 72
   canDetect:
     serializedVersion: 2
-    m_Bits: 840
+    m_Bits: 330
   groundScan: {fileID: 7008831956115702728}
 --- !u!82 &1481494887134113645
 AudioSource:

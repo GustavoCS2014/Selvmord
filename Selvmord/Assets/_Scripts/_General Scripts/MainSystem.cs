@@ -30,7 +30,7 @@ public class MainSystem : MonoBehaviour
     bool GetingDamage = false;
 
     // ----------- Activate Spawn --------------
-    [SerializeField] GameObject[] CheckPointsGO;
+    [SerializeField] public GameObject[] CheckPointsGO;
     [SerializeField] GameObject[] Walls;
     int conNum = 0;
 
@@ -163,6 +163,34 @@ public class MainSystem : MonoBehaviour
 
         PlayerPrefs.SetFloat("Heal" + GamePlaying, Health);
 
+        GetingDamage = true;
+        healing = false;
+    }
+
+    public void DamageSpikesReturn()
+    {
+        if (inmortal)
+        {
+            return;
+        }
+
+        Health -= 30;
+
+        if (Health < 0 && life == 1)
+        {
+            GameOver();
+            return;
+        }
+
+        if (Health < 0)
+        {
+            Health = -1;
+            E.SetActive(true);
+            WallDesactive();
+            PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive" + GamePlaying));
+        }
+
+        PlayerPrefs.SetFloat("Heal" + GamePlaying, Health);
         GetingDamage = true;
         healing = false;
     }

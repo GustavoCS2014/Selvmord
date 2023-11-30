@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class SpikeReturn : MonoBehaviour
 {
-    [SerializeField] Transform CheckPoint;
-    [SerializeField] Transform Player;
 
     MainSystem MS;
+    SpawnControler SC;
     private void Start()
     {
         MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
+        SC = GameObject.FindGameObjectWithTag("Player").GetComponent<SpawnControler>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            MS.DamagePlayer(30, collision.GetContact(0).normal);
-            Player.position = CheckPoint.position;
+            MS.DamageSpikesReturn();
+            SC.ReturnPlayerSpawn();
         }
     }
 }
