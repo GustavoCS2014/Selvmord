@@ -43,7 +43,7 @@ Material:
     - _intensity: 2
     m_Colors:
     - _Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0}
-    - _IntensityHDR: {r: 5.992157, g: 5.992157, b: 5.992157, a: 0}
+    - _IntensityHDR: {r: 0.5902458, g: 0.78697646, b: 1.4721423, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2823313564038570912
 MonoBehaviour:
