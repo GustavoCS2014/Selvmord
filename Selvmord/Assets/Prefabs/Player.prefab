@@ -14802,7 +14802,7 @@ MonoBehaviour:
   wallCheckSize: {x: 0.5, y: 1.5}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 24
   platformLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -14849,7 +14849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugHealth: 500
-  debugSouls: 0
+  debugSouls: 20
 --- !u!61 &9030962780619600486
 BoxCollider2D:
   m_ObjectHideFlags: 0

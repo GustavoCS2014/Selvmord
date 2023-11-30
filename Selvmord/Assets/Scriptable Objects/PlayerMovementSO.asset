@@ -25,7 +25,7 @@ MonoBehaviour:
   RunDecelerationAmount: 25
   AccelerationMultiplierInAir: 0.5
   DecelerationMultiplierInAir: 0.3
-  StartingJumpCount: 2
+  StartingJumpCount: 1
   MaxJumpCount: 5
   JumpHeight: 6
   JumpTimeToReachApex: 0.35
@@ -44,7 +44,7 @@ MonoBehaviour:
   WallJumpCoolDown: 0.3
   DashDistance: 9
   DashTime: 0.15
-  DashCooldown: 0.5
+  DashCooldown: 0.3
   DashSmoothExit: 0.3
   AfterDashHangTime: 0.06
   DashForce: 59.999996

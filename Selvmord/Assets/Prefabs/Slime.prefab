@@ -232,7 +232,7 @@ MonoBehaviour:
     m_Bits: 72
   canDetect:
     serializedVersion: 2
-    m_Bits: 328
+    m_Bits: 330
   groundScan: {fileID: 7008831956115702728}
 --- !u!82 &1481494887134113645
 AudioSource:

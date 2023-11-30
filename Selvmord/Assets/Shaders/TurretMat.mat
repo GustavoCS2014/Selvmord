@@ -45,7 +45,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _IntensityHDR: {r: 0.22745098, g: 0.9372549, b: 0.8862745, a: 0}
+    - _IntensityHDR: {r: 0, g: 0.33631048, b: 3.0588238, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8058983777723365700
 MonoBehaviour:
