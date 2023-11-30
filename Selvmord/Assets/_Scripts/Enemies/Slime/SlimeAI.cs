@@ -137,6 +137,7 @@ public class SlimeAI : MonoBehaviour
 
             if(ShowDebugRays) Debug.DrawRay(_trayectory[i], _trayectory[i + 1] - _trayectory[i], Color.red, Time.deltaTime);
             //? If the ray collides with the platform return -1
+            _out = 0;
             if(IsCollidingWithPlatform(_trayectory[_trayectory.Count - 1], .2f)) {
                 _out = -1;
                 if(ShowDebugRays) Debug.DrawRay(_trayectory[i], _trayectory[i + 1] - _trayectory[i], Color.green, Time.deltaTime);
