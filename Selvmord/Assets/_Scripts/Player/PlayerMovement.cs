@@ -51,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
     //? Dash
     private bool canDash = true;
-    static bool ItemDashCollect = false;
 
 
     private Vector2 movementInput;
@@ -363,10 +362,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Dash()
     {
-        if (!ItemDashCollect)
-        {
-            return;
-        }
 
         if (dashInput && canDash && !IsWalled() && !IsWallSliding)
         {

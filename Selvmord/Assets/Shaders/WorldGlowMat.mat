@@ -49,8 +49,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BloomColor: {r: 0.7877358, g: 0.8584906, b: 1, a: 1}
-    - _Dir: {r: 0, g: -0.1, b: 0, a: 0}
+    - _BloomColor: {r: 0, g: 0.15686275, b: 0.7490196, a: 1}
+    - _Dir: {r: 0, g: -0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2438886650580224883
 MonoBehaviour:

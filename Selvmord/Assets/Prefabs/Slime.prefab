@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7008831956115702728}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: GroundScan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 7008831957381634457}
   - component: {fileID: 1481494887134113645}
   - component: {fileID: 4506322084204766898}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}

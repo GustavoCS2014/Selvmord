@@ -25,7 +25,7 @@ MonoBehaviour:
   RunDecelerationAmount: 25
   AccelerationMultiplierInAir: 0.5
   DecelerationMultiplierInAir: 0.3
-  StartingJumpCount: 1
+  StartingJumpCount: 2
   MaxJumpCount: 5
   JumpHeight: 6
   JumpTimeToReachApex: 0.35
@@ -42,12 +42,12 @@ MonoBehaviour:
   WallJumpForce: {x: 30, y: 40}
   WallJumpInputDisable: 0.05
   WallJumpCoolDown: 0.3
-  DashDistance: 8
+  DashDistance: 9
   DashTime: 0.15
   DashCooldown: 0.5
   DashSmoothExit: 0.3
   AfterDashHangTime: 0.06
-  DashForce: 53.333332
+  DashForce: 59.999996
   CoyoteTime: 0.1
   WallCoyoteTime: 0.125
   JumpInputBufferTime: 0.1

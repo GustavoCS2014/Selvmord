@@ -9807,9 +9807,9 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 1
   m_LightVolumeIntensity: 0
-  m_LightVolumeIntensityEnabled: 1
+  m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 0000000051830daa21359c5daffcd888
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -9819,7 +9819,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 1
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensityEnabled: 0
   m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.75
@@ -9829,7 +9829,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 5
-  m_PointLightOuterRadius: 9
+  m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -14701,7 +14701,9 @@ GameObject:
   - component: {fileID: 9030962780619600486}
   - component: {fileID: 9030962780619600487}
   - component: {fileID: 4656244536469796707}
-  m_Layer: 0
+  - component: {fileID: 1742655732}
+  - component: {fileID: 1742655724}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -14807,8 +14809,8 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 8
-  VelocityRebound: {x: 0, y: 0}
-  VelocityReboundPlayer: 0
+  VelocityRebound: {x: 15, y: 25}
+  VelocityReboundPlayer: 35
 --- !u!114 &1225247586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14828,6 +14830,12 @@ MonoBehaviour:
   DoubleJumpParticles: {fileID: 886748443}
   HoodieDashParticles: {fileID: 5556410818037472735}
   PantsDashParticles: {fileID: 4275703575884675686}
+  MoveSound: {fileID: 0}
+  GroundSound: {fileID: 8300000, guid: b787f9d696f55454dbd96c880345f1bf, type: 3}
+  DashSound: {fileID: 0}
+  DamageSound: {fileID: 0}
+  DeathSound: {fileID: 0}
+  JumpSound: {fileID: 0}
 --- !u!114 &73608647798649089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14841,6 +14849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugHealth: 500
+  debugSouls: 0
 --- !u!61 &9030962780619600486
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14909,6 +14918,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!81 &1742655732
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030962780619600282}
+  m_Enabled: 1
+--- !u!114 &1742655724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030962780619600282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057aae3ccb4edd9489e4544765853717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FBotom: {fileID: 0}
+  FBar: {fileID: 0}
 --- !u!1 &9030962780792648500
 GameObject:
   m_ObjectHideFlags: 0
