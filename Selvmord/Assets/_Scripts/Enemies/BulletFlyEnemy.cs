@@ -50,7 +50,7 @@ public class BulletFlyEnemy : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             GetComponentInChildren<SpriteRenderer>().enabled = false;
             crashed = true;
-            MS.DamagePlayer(30, new Vector2(0,0));
+            MS.DamagePlayer(20, new Vector2(0,0));
 
         }
     }

@@ -182,7 +182,7 @@ public class MainSystem : MonoBehaviour
             return;
         }
 
-        Health -= 30;
+        Health -= 10;
 
         if (Health < 0 && life == 1)
         {
@@ -349,7 +349,7 @@ public class MainSystem : MonoBehaviour
         PlayerPrefs.SetInt("Life" + GamePlaying, 3);
         PlayerPrefs.SetFloat("Heal" + GamePlaying, 100);
         PlayerPrefs.SetFloat("Soul" + GamePlaying, 0);
-        SceneManager.LoadScene("UI_MainMenu");
+        SceneManager.LoadScene("Lose");
     }
     #endregion
 }

@@ -66,6 +66,7 @@ public class MenusControler : MonoBehaviour
 
     public void Resume()
     {
+        audioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 1f;
         menuPause.SetActive(false);
         GameIsPaused = false;
@@ -75,6 +76,7 @@ public class MenusControler : MonoBehaviour
 
     public void Pause()
     {
+        audioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 0f;
         menuPause.SetActive(true);
         GameIsPaused = true;

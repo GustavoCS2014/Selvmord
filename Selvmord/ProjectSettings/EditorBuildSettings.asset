@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AudioSystem.unity
     guid: d384aadd472b2d6419265a96997083ea
+  - enabled: 1
+    path: Assets/Scenes/Lose.unity
+    guid: 430288c5c26a7c2449e001791b0fcdef
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: a6c9905d8bc4d894492cf97962df4478
   m_configObjects: {}

@@ -66,7 +66,6 @@ public class PlayerAnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         GetComponent<SpriteRenderer>().enabled = InputManager.Dead ?  false : true;
         ChangeAnimation();
         

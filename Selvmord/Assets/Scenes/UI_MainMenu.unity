@@ -314,6 +314,9 @@ MonoBehaviour:
   sfxAudioSourcesCount: 0
   StartMusic: {fileID: 8300000, guid: a6a69e29b2438a6439053aaf43ed9912, type: 3}
   GameMusic: {fileID: 8300000, guid: 5fdb9604b5865e14da7dc1ca8581a20c, type: 3}
+  BossMusic: {fileID: 8300000, guid: f04ae663f432a72439920184c2d9fe41, type: 3}
+  WinMusic: {fileID: 8300000, guid: 36b6e6116a86137488016b9f361f9c54, type: 3}
+  LoseMusic: {fileID: 8300000, guid: 44b13b96ee3c40742bb135030dfb430e, type: 3}
 --- !u!4 &428115791
 Transform:
   m_ObjectHideFlags: 0

@@ -8,6 +8,11 @@ public class UI : MonoBehaviour
 
     private void OnEnable()
     {
+        Invoke("StartConfiguration", 0.6f);
+    }
+
+    void StartConfiguration()
+    {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
         Button btnContinue = root.Q<Button>("continue");

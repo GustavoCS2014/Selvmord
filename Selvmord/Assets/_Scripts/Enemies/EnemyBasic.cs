@@ -158,7 +158,7 @@ public class EnemyBasic : MonoBehaviour
             }
             else
             {
-                MS.DamagePlayer(30, collision.GetContact(0).normal);
+                MS.DamagePlayer(20, collision.GetContact(0).normal);
             }
 
         }

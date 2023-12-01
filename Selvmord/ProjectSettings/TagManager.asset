@@ -18,6 +18,7 @@ TagManager:
   - AudioManager
   - Music
   - SFX
+  - ResetPoint
   layers:
   - Default
   - TransparentFX

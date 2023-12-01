@@ -99,7 +99,7 @@ public class CameraController : MonoBehaviour
         if (!Boss.StartBossFight)
         {
 
-            transform.position = Vector2.MoveTowards(transform.position, StartPoint.position, Boss.VelocityMovementBoss * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, StartPoint.position, Boss.VelocityMovementBoss*2.5f * Time.deltaTime);
 
             if (Vector2.Distance(transform.position, StartPoint.position) < 1)
             {
@@ -111,5 +111,10 @@ public class CameraController : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, EndPoint.position, Boss.VelocityMovementBoss * Time.deltaTime);
         }
+    }
+
+    public void ReturnPlayerPosition()
+    {
+        transform.transform.position = Target.transform.position + new Vector3(xOffset, yOffset, -10);
     }
 }

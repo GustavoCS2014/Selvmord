@@ -39,6 +39,10 @@ public class AudioSettings : MonoBehaviour
 
     public AudioClip StartMusic;
     public AudioClip GameMusic;
+    public AudioClip BossMusic;
+    public AudioClip WinMusic;
+    public AudioClip LoseMusic;
+
     private AudioClip CurrentMusic;
 
     private GameObject AudioGroup;
@@ -57,7 +61,7 @@ public class AudioSettings : MonoBehaviour
 
     private void Start()
     {
-        Invoke("PlayMusic", 0.75f);
+        Invoke("PlayMusic", 0.5f);
     }
 
     private void Update()
@@ -193,5 +197,33 @@ public class AudioSettings : MonoBehaviour
         Music.Stop();
         PlayMusic(GameMusic);
         CurrentMusic = GameMusic;
+    }
+
+    public void BossStartMusic()
+    {
+        Music.Stop();
+        PlayMusic(BossMusic);
+        CurrentMusic = BossMusic;
+    }
+
+    public void WinStartMusic()
+    {
+        Music.Stop();
+        PlayMusic(WinMusic);
+        CurrentMusic = WinMusic;
+    }
+
+    public void lostStartMusic()
+    {
+        Music.Stop();
+        PlayMusic(LoseMusic);
+        CurrentMusic = LoseMusic;
+    }
+
+    public void StartStartMusic()
+    {
+        Music.Stop();
+        PlayMusic(StartMusic);
+        CurrentMusic = StartMusic;
     }
 }

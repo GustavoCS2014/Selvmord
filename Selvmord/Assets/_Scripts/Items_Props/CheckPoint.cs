@@ -12,12 +12,19 @@ public class CheckPoint : MonoBehaviour
     int GamePlaying;
     MainSystem MS;
 
+    AudioSettings AS;
     private void Start()
     {
         GamePlaying = PlayerPrefs.GetInt("LastGame");
         MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
         PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive" + GamePlaying));
+        AS = GameObject.FindWithTag("AudioManager").GetComponent<AudioSettings>();
 
+
+        if(PlayerPrefs.GetInt("SpawnActive" + GamePlaying) >= 6)
+        {
+            AS.BossStartMusic();
+        }
     }
     void Update()
     {
@@ -43,6 +50,12 @@ public class CheckPoint : MonoBehaviour
                 int con = 1 + PlayerPrefs.GetInt("SpawnConter");
                 PlayerPrefs.SetInt("SpawnConter", con);
                 Enter = false;
+
+                if(con >=6)
+                {
+                    AS.BossStartMusic();
+                }
+                
             }
 
             MS.WallActive(PlayerPrefs.GetInt("SpawnConter"));

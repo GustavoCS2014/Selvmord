@@ -54,6 +54,7 @@ public class UlMenuPause : MonoBehaviour
     {
         Settings.SetActive(false);
         MC.PauseUI();
+        audioManager.Instance.ReproduceClick(ReturnSound);
     }
 
     public void YesOption() 

@@ -293,7 +293,7 @@ public class SlimeAI : MonoBehaviour
             else
             {
                 MS.DamageSpikesReturn();
-                MS.DamagePlayer(30, collision.GetContact(0).normal);
+                MS.DamagePlayer(20, collision.GetContact(0).normal);
             }
 
         }
