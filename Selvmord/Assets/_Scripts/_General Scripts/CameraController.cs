@@ -116,5 +116,7 @@ public class CameraController : MonoBehaviour
     public void ReturnPlayerPosition()
     {
         transform.transform.position = Target.transform.position + new Vector3(xOffset, yOffset, -10);
+        Boss.FinalAtack = false;
+        Boss.StartBossFight = false;
     }
 }

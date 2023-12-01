@@ -17,6 +17,9 @@ public class Boss : MonoBehaviour
     private bool HeavyAtack = true;
     [SerializeField] private float TimeHeavyAttack;
     [SerializeField] private float TimeWarning;
+
+    private float CurrentTime;
+
     [SerializeField] Transform[] HeavyPoints;
     [SerializeField] GameObject Warning;
 
@@ -27,7 +30,7 @@ public class Boss : MonoBehaviour
     public static bool StartBossFight = false;
 
     bool Reset = false;
-    bool FinalAtack = false;
+    public static bool FinalAtack = false;
 
     Animator _animator;
     private void Start()
@@ -42,7 +45,7 @@ public class Boss : MonoBehaviour
     {
         
 
-        if (transform.position == new Vector3(EndPoint.position.x, EndPoint.position.y + 14f))
+        if (FinalAtack)
         {
 
             if (!Reset)
@@ -51,11 +54,6 @@ public class Boss : MonoBehaviour
                 HeavyBullet.SetActive(false);
                 Warning.SetActive(false);
                 _animator.SetBool("Atacking", false);
-            }
-
-            if (!FinalAtack)
-            {
-                FinalAtack = true;
                 StartCoroutine(HeavyAtackEnd());
             }
 
@@ -63,13 +61,14 @@ public class Boss : MonoBehaviour
         {
             if (Reset)
             {
+                StopAllCoroutines();
+                FinalAtack = false;
                 Reset = false;
                 reloded = true;
-
-                RelodedAtack();
+                HeavyAtack = true;
             }
 
-            transform.position = Vector2.MoveTowards(transform.position, new Vector3(EndPoint.position.x,EndPoint.position.y+14f), VelocityMovementBoss * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector3(EndPoint.position.x,EndPoint.position.y+14.5f), VelocityMovementBoss * Time.deltaTime);
             if (reloded)
             {
                 Invoke("Shoot", 1f);
@@ -81,17 +80,20 @@ public class Boss : MonoBehaviour
                 StartCoroutine(HeavyAtackWarning());
                 HeavyAtack= false;
             }
+
+            if (transform.position == new Vector3(EndPoint.position.x, EndPoint.position.y + 14.5f)) FinalAtack = true;
         }
         else
         {
-            transform.position = new Vector3(StartPoint.position.x, StartPoint.position.y + 14f);
-            HeavyBullet.SetActive(false);
-            Warning.SetActive(false);
-            _animator.SetBool("Atacking", false);
-
             if (!Reset)
             {
+                transform.position = new Vector3(StartPoint.position.x, StartPoint.position.y + 14.5f);
+                HeavyBullet.SetActive(false);
+                Warning.SetActive(false);
+                _animator.SetBool("Atacking", false);
+                HeavyAtack = false;
                 Reset = true;
+                StopAllCoroutines();
             }
             
         }
@@ -103,7 +105,7 @@ public class Boss : MonoBehaviour
     {
         if (Reset) return;
         int random = Random.Range(0, points.Length);
-        Instantiate(bullet, points[random].position, points[0].rotation);    
+        Instantiate(bullet, new Vector3(points[random].transform.position.x, points[random].transform.position.y+3,0), points[0].rotation);    
         reloded= true;
     }
 
@@ -118,18 +120,19 @@ public class Boss : MonoBehaviour
     }
     private IEnumerator HeavyAtackEnd()
     {
-        for(int i = 0 ; i < HeavyPoints.Length; i =i + 3) 
+        for(int i = 0 ; i < points.Length; i += 3) 
         {
             EmergencyNotice(i);
             yield return new WaitForSeconds(.5f);
             Warning.SetActive(false);
             InstanceAtack(i);
         }
-        
+        FinalAtack = false;
     }
 
     void EmergencyNotice(int random)
     {
+        if (Reset) return;
         Warning.SetActive(true);
         Warning.transform.position = new Vector3(HeavyPoints[random].transform.position.x, HeavyPoints[random].transform.position.y,0);
     }
@@ -144,7 +147,7 @@ public class Boss : MonoBehaviour
 
     void InstanceAtack(int random)
     {
-        Instantiate(HeavyBulletFinal, new Vector3(HeavyPoints[random].transform.position.x, HeavyBullet.transform.position.y, 0), HeavyPoints[2].rotation);
+        Instantiate(HeavyBulletFinal, new Vector3(points[random].transform.position.x, HeavyBullet.transform.position.y, 0), HeavyPoints[2].rotation);
         _animator.SetBool("Atacking", true);
     }
 
@@ -158,6 +161,7 @@ public class Boss : MonoBehaviour
 
     void RelodedAtack()
     {
+        if (Reset) return;
         HeavyAtack = true;
     }
 }

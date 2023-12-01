@@ -4935,6 +4935,7 @@ GameObject:
   - component: {fileID: 7238191711934274253}
   - component: {fileID: 9087871031707841678}
   - component: {fileID: 4330947627859506909}
+  - component: {fileID: 2110132628578938162}
   m_Layer: 0
   m_Name: HeavyBullet
   m_TagString: Untagged
@@ -4994,5 +4995,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 426805e790104d94bb91bbd367c47213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2110132628578938162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7238191711934274250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07502e12c0b727244b4ba5b507a1a8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

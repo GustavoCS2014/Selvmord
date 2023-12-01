@@ -23,13 +23,6 @@ public class EnemyBasic : MonoBehaviour
 
     private bool Wait = false;
 
-    [Space(5)]
-    [Header("____ Sound ____")]
-    [SerializeField] private AudioClip WalkSound;
-    [SerializeField] private AudioClip CrySound;
-    private AudioSource audioSource;
-    private AudioClip LastAudio;
-
     MainSystem MS;
     Animator _animator;
 
@@ -41,8 +34,6 @@ public class EnemyBasic : MonoBehaviour
 
         speed = Random.Range(SpeedMin, SpeedMax);
         WaitTime = Random.Range(WaitTimeMin, WaitTimeMax);
-
-        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -64,7 +55,6 @@ public class EnemyBasic : MonoBehaviour
                 if(!Wait)
                 {
                     rb.velocity = new Vector2(speed * transform.right.x, rb.velocity.y);
-                    ReproduceSound(WalkSound);
 
                     RaycastHit2D GroundStop = Physics2D.Raycast(GroundCheck.position, Vector2.down, distance);
 
@@ -84,10 +74,6 @@ public class EnemyBasic : MonoBehaviour
                     {
                         Stop();
                     }
-                }
-                else
-                {
-                    ReproduceSound(CrySound);
                 }
             }
             else
@@ -162,14 +148,5 @@ public class EnemyBasic : MonoBehaviour
             }
 
         }
-    }
-
-    public void ReproduceSound(AudioClip sound)
-    {
-        LastAudio = audioSource.isPlaying ? sound : null;
-
-        if (LastAudio == sound) return;
-        LastAudio = sound;
-        audioSource.PlayOneShot(sound);
     }
 }
