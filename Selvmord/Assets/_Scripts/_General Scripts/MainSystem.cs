@@ -148,6 +148,8 @@ public class MainSystem : MonoBehaviour
 
         Health -= damage;
 
+        EventManager.Instance.DamageTaken();
+
         if (Health < 0 && life == 1)
         {
             GameOver();
@@ -183,6 +185,7 @@ public class MainSystem : MonoBehaviour
         }
 
         Health -= 10;
+        EventManager.Instance.DamageTaken();
 
         if (Health < 0 && life == 1)
         {

@@ -2,11 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class UIMenu : MonoBehaviour
 {
     [SerializeField] AudioClip ClickSound;
     AudioSettings AS;
+
+    private void OnEnable()
+    {
+        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+
+        Button btnMainMenu = root.Q<Button>("mainmenu");
+        Button btnQuit = root.Q<Button>("quit");
+
+        btnMainMenu.clicked += () => ReturnMenu();
+        btnQuit.clicked += () => QuitGame();
+    }
+
     private void Start()
     {
         AS = GameObject.FindWithTag("AudioManager").GetComponent<AudioSettings>();
@@ -32,7 +45,7 @@ public class UIMenu : MonoBehaviour
 
     public void ReturnMenu()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         SceneManager.LoadScene("UI_MainMenu");
         AS.StartStartMusic();
     }

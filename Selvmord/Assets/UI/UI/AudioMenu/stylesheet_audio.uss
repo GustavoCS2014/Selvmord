@@ -1,0 +1,21 @@
+.slider:focus {
+    color: rgba(255, 255, 255, 255);
+}
+
+.slider {
+    color: rgba(255, 255, 255, 255);
+}
+
+.button:hover {
+    color: rgba(161, 151, 151, 255);
+    background-color: rgb(190, 190, 190);
+    -unity-background-image-tint-color: rgba(190, 190, 190, 255);
+}
+
+.button:focus {
+    background-color: rgba(255, 255, 255, 255);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 255);
+}
+
+.button {
+}

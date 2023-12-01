@@ -35,32 +35,32 @@ public class UlMenuPause : MonoBehaviour
     {
         Settings.SetActive(true);
         MC.menuPauseClose();
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
     }
 
     public void CloseSettings()
     {
         Settings.SetActive(false);
-        audioManager.Instance.ReproduceClick(ReturnSound);
+        AudioManager.Instance.ReproduceClick(ReturnSound);
     }
 
     void ReturnToMenu()
     {
         MC.menuPauseClose();
         RetrunToMenu.SetActive(true);
-        audioManager.Instance.ReproduceClick(ReturnSound);
+        AudioManager.Instance.ReproduceClick(ReturnSound);
     }
     public void pause()
     {
         Settings.SetActive(false);
         MC.PauseUI();
-        audioManager.Instance.ReproduceClick(ReturnSound);
+        AudioManager.Instance.ReproduceClick(ReturnSound);
     }
 
     public void YesOption() 
     {
         SceneManager.LoadScene("UI_MainMenu");
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 1f;
     }
 
@@ -76,7 +76,7 @@ public class UlMenuPause : MonoBehaviour
         PlayerPrefs.SetFloat("Heal" + game, 100);
         PlayerPrefs.SetFloat("Soul" + game, 0);
         SceneManager.LoadScene("UI_MainMenu");
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 1f;
     }
 
@@ -84,6 +84,6 @@ public class UlMenuPause : MonoBehaviour
     {
         RetrunToMenu.SetActive(false);
         MC.Pause();
-        audioManager.Instance.ReproduceClick(ReturnSound);
+        AudioManager.Instance.ReproduceClick(ReturnSound);
     }
 }

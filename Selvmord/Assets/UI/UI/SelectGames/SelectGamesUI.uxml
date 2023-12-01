@@ -1,0 +1,36 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/SelectGames/stylesheet_select_game.uss?fileID=7433441132597879392&amp;guid=62cb94a63952f20479f1c1dd1f494294&amp;type=3#stylesheet_select_game" />
+    <ui:VisualElement>
+        <ui:VisualElement name="container" style="height: 342px; width: 1120px; align-items: center; justify-content: space-around; position: absolute; top: 148px; left: 15px; -unity-background-image-tint-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0); color: rgba(0, 0, 0, 255);">
+            <ui:Button display-tooltip-when-elided="true" name="game1" class="button" style="justify-content: space-around; align-items: center;">
+                <ui:Label text="Game 1:" display-tooltip-when-elided="true" name="gameName1" class="label" style="width: 101px; height: 50px; position: absolute; top: 15px; left: 16px;" />
+                <ui:Label text="Health:" display-tooltip-when-elided="true" name="Health1" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 205px;" />
+                <ui:Label text="23" display-tooltip-when-elided="true" name="HealthStat1" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 270px;" />
+                <ui:Label text="Souls:" display-tooltip-when-elided="true" name="Souls1" class="label" style="height: 50px; position: absolute; top: 15px; left: 430px; right: 300px;" />
+                <ui:Label text="23" display-tooltip-when-elided="true" name="SoulsStat1" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 490px;" />
+                <ui:Label text="Lifes:" display-tooltip-when-elided="true" name="Lifes1" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 660px;" />
+                <ui:Label text="23" display-tooltip-when-elided="true" name="LifeStat1" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 720px;" />
+            </ui:Button>
+            <ui:Button display-tooltip-when-elided="true" name="game2" class="button">
+                <ui:Label text="Game 1:" display-tooltip-when-elided="true" name="gameName2" class="label" style="width: 101px; height: 50px; position: absolute; top: 15px; left: 16px;" />
+                <ui:Label text="Health:" display-tooltip-when-elided="true" name="Health2" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 205px;" />
+                <ui:Label text="23" display-tooltip-when-elided="true" name="HealthStat2" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 270px;" />
+                <ui:Label text="Souls:" display-tooltip-when-elided="true" name="Souls2" class="label" style="height: 50px; position: absolute; top: 15px; left: 430px; right: 300px;" />
+                <ui:Label text="23" display-tooltip-when-elided="true" name="SoulsStat2" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 490px;" />
+                <ui:Label text="Lifes:" display-tooltip-when-elided="true" name="Lifes2" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 660px;" />
+                <ui:Label text="23" display-tooltip-when-elided="true" name="LifeStat2" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 720px;" />
+            </ui:Button>
+            <ui:Button display-tooltip-when-elided="true" name="game3" class="button">
+                <ui:Label text="Game 1:" display-tooltip-when-elided="true" name="gameName3" class="label" style="width: 101px; height: 50px; position: absolute; top: 15px; left: 16px;" />
+                <ui:Label text="Health:" display-tooltip-when-elided="true" name="Health3" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 205px;" />
+                <ui:Label text="23" display-tooltip-when-elided="true" name="HealthStat3" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 270px;" />
+                <ui:Label text="Souls:" display-tooltip-when-elided="true" name="Souls3" class="label" style="height: 50px; position: absolute; top: 15px; left: 430px; right: 300px;" />
+                <ui:Label text="23" display-tooltip-when-elided="true" name="SoulsStat3" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 490px;" />
+                <ui:Label text="Lifes:" display-tooltip-when-elided="true" name="Lifes3" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 660px;" />
+                <ui:Label text="23" display-tooltip-when-elided="true" name="LifeStat3" class="label" style="width: 70px; height: 50px; position: absolute; top: 15px; left: 720px;" />
+            </ui:Button>
+            <ui:Button text="Return" display-tooltip-when-elided="true" name="return" style="width: 200px; height: 30px; font-size: 20px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 0; border-top-width: 0; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; -unity-background-image-tint-color: rgba(88, 88, 88, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="logo" style="background-image: url(&apos;project://database/Assets/UI/MainMenu/Logo%20pixelart_scaled_12x_pngcrushed.png?fileID=2800000&amp;guid=913e15eb19479014db2c854e97854602&amp;type=3#Logo pixelart_scaled_12x_pngcrushed&apos;); width: 784px; height: 99px; position: absolute; top: 20px; left: 184px; align-items: center; justify-content: flex-start;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 977402178547583930}
   - component: {fileID: 977402178547583931}
   - component: {fileID: 977402178547583556}
-  - component: {fileID: 977402178547583557}
+  - component: {fileID: 18107122322164283}
   m_Layer: 0
   m_Name: SoulsEmmiter
   m_TagString: Untagged
@@ -51,7 +51,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -170,8 +170,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
-      minScalar: -0.1
+      scalar: 0.2
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -977,8 +977,8 @@ ParticleSystem:
       time: 0
       countCurve:
         serializedVersion: 2
-        minMaxState: 3
-        scalar: 40
+        minMaxState: 0
+        scalar: 21
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4886,7 +4886,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &977402178547583557
+--- !u!114 &18107122322164283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4895,35 +4895,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 977402178547583558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ee4cae2feae5b419b80e2ee1d2e71d, type: 3}
+  m_Script: {fileID: 11500000, guid: b9f09659fed9aee469e06db2f3bafabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  startSleep: 1
+  startSleep: 0.5
   speedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -0.008324085
-      outSlope: -0.008324085
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.56666666
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.75
+      time: 1
       value: 1
-      inSlope: -0
-      outSlope: -0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.22916669
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 0.05
-  pickUpRange: 20
-  TIME: 0
+  speed: 0.4
+  pickUpRange: 10

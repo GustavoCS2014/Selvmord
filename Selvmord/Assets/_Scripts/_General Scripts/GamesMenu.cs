@@ -42,7 +42,7 @@ public class GamesMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("GameUI") == 1)
         {
-            audioManager.Instance.ReproduceClick(ClickSound);
+            AudioManager.Instance.ReproduceClick(ClickSound);
             YesNoUI.SetActive(true);
             game = 1;
         }
@@ -50,7 +50,7 @@ public class GamesMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("LastGame", 1);
             LoadLevel();
-            audioManager.Instance.ReproduceClick(ClickSound);
+            AudioManager.Instance.ReproduceClick(ClickSound);
         }
         else
         {
@@ -64,7 +64,7 @@ public class GamesMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("GameUI") == 1)
         {
-            audioManager.Instance.ReproduceClick(ClickSound);
+            AudioManager.Instance.ReproduceClick(ClickSound);
             YesNoUI.SetActive(true);
             game = 2;
         }
@@ -72,7 +72,7 @@ public class GamesMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("LastGame", 2);
             LoadLevel();
-            audioManager.Instance.ReproduceClick(ClickSound);
+            AudioManager.Instance.ReproduceClick(ClickSound);
         }
         else
         {
@@ -86,7 +86,7 @@ public class GamesMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("GameUI") == 1)
         {
-            audioManager.Instance.ReproduceClick(ClickSound);
+            AudioManager.Instance.ReproduceClick(ClickSound);
             YesNoUI.SetActive(true);
             game = 3;
         }
@@ -94,7 +94,7 @@ public class GamesMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("LastGame", 3);
             LoadLevel();
-            audioManager.Instance.ReproduceClick(ClickSound);
+            AudioManager.Instance.ReproduceClick(ClickSound);
         }
         else
         {
@@ -106,19 +106,19 @@ public class GamesMenu : MonoBehaviour
 
     public void Return()
     {
-        audioManager.Instance.ReproduceClick(CloseSound);
+        AudioManager.Instance.ReproduceClick(CloseSound);
         SceneManager.LoadScene("UI_MainMenu");
     }
 
     public void CloseUI()
     {
-        audioManager.Instance.ReproduceClick(CloseSound);
+        AudioManager.Instance.ReproduceClick(CloseSound);
         YesNoUI.SetActive(false);
     }
 
     public void GamePlay()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         ResetGame(game);
         LoadLevel();
     }

@@ -66,7 +66,7 @@ public class MenusControler : MonoBehaviour
 
     public void Resume()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 1f;
         menuPause.SetActive(false);
         GameIsPaused = false;
@@ -76,7 +76,7 @@ public class MenusControler : MonoBehaviour
 
     public void Pause()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 0f;
         menuPause.SetActive(true);
         GameIsPaused = true;
@@ -101,14 +101,14 @@ public class MenusControler : MonoBehaviour
         
     public void Quit()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 1f;
         Application.Quit();
     }
 
     public void Continue()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
 
         if (PlayerPrefs.GetInt("LastGame") == 0)
         {
@@ -132,20 +132,20 @@ public class MenusControler : MonoBehaviour
 
     public void LoadGame()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         PlayerPrefs.SetInt("GameUI", 2);
         SceneManager.LoadScene("UI_Games");
     }
 
     public void Settings()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         SceneManager.LoadScene("AudioSystem");
     }
 
     public void Return()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         SceneManager.LoadScene("UI_MainMenu");
     }
 
@@ -158,6 +158,6 @@ public class MenusControler : MonoBehaviour
 
     private void ClickSoundBottom()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
     }
 }

@@ -36,47 +36,14 @@ public class EventManager : MonoBehaviour
     }
     #endregion
 
-    #region WORLD FALL
+    #region DAMAGE TAKEN
 
-    public event Action OnWorldFall;
+    public event Action OnDamageTaken;
 
-    public void WorldFall()
-    {
-        if (OnWorldFall != null)
-            OnWorldFall();
+    public void DamageTaken() {
+        if(OnDamageTaken != null) 
+            OnDamageTaken();
     }
 
-    #endregion
-
-    #region LAND
-    public event Action OnPlayerLand;
-
-    public void PlayerLanded() {
-        if(OnPlayerLand != null)
-            OnPlayerLand();
-    }
-
-    #endregion
-
-    #region SPAWN ENEMIES
-    public event Action OnSpawnEnemies;
-
-    public void SpawnEnemies()
-    {
-        if (OnSpawnEnemies != null)
-            OnSpawnEnemies();
-    }
-
-    #endregion
-
-    #region END SCREEN
-
-    public event Action OnEndScreen;
-
-    public void EndScreen()
-    {
-        if (OnEndScreen != null)
-            OnEndScreen();
-    }
     #endregion
 }

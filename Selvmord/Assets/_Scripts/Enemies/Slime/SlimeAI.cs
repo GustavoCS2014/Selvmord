@@ -15,6 +15,8 @@ public class SlimeAI : MonoBehaviour
     private Rigidbody2D rb2D;
     private MainSystem MS;
 
+    [SerializeField] GameObject ParticulaSouls; 
+
     [SerializeField] private bool ShowDebugRays;
     private float simulationDuration = 5f;
     private float simulationSteps = 0.01f;
@@ -287,7 +289,7 @@ public class SlimeAI : MonoBehaviour
             if (collision.GetContact(0).normal.y <= -0.9)
             {
                 collision.gameObject.GetComponent<PlayerMovement>().ReboundPlayer();
-                MS.AddSoul(1);
+                Instantiate(ParticulaSouls,transform.position,Quaternion.identity);
                 gameObject.SetActive(false);
             }
             else

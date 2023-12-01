@@ -5,29 +5,30 @@ using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class ParticleMoveToTarget : MonoBehaviour
+public class SoulPickup : MonoBehaviour
 {
-    [SerializeField] private Transform target;
     [SerializeField] private float startSleep;
     [SerializeField] private AnimationCurve speedCurve;
     [SerializeField, Range(0.05f, 1)] private float speed;
     [SerializeField] private float pickUpRange;
     private ParticleSystem pS;
+    private MainSystem MS;
     private Particle[] particles = new Particle[500];
-    public float TIME;
+
+    private int counter;
 
     private void Awake() {
         pS = GetComponent<ParticleSystem>();
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
     }
 
     private void Update() {
-        if(InputManager.InteractiveKey && !pS.isPlaying) pS.Play();
+        Transform _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         int _particleCount = pS.GetParticles(particles);
         for(int i = 0; i < _particleCount; i++) {
             var particle = particles[i];
-            float distance = Vector2.Distance(target.position, particle.position);
-
+            float distance = Vector2.Distance(_playerTransform.position, particle.position);
             if(particle.remainingLifetime > particle.startLifetime - startSleep) break;
 
             if(distance > pickUpRange) {
@@ -38,12 +39,18 @@ public class ParticleMoveToTarget : MonoBehaviour
 
             if(distance < .5f) {
                 particle.remainingLifetime = 0;
+                counter += 1;
+                if(counter % 3 == 0) {
+                    counter -= 3;
+                    MS.AddSoul(1);
+                }
                 particles[i] = particle;
                 if(_particleCount < 1) pS.Stop();
+                Destroy(gameObject);
                 continue;
             }
             if(distance > .1f) {
-                particle.position = Vector2.Lerp(particle.position, target.position, speedCurve.Evaluate(Remap(particle.remainingLifetime, particle.startLifetime, 0, 0, 1))*speed);
+                particle.position = Vector2.Lerp(particle.position, _playerTransform.position, speedCurve.Evaluate(Remap(particle.remainingLifetime, particle.startLifetime, 0, 0, 1))*speed);
                 particles[i] = particle;
             }
         }

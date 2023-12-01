@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class audioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    public static audioManager Instance;
+    public static AudioManager Instance;
     private AudioSource audioSource;
     private AudioClip LastAudio;
+    [SerializeField] private AudioClip DamageSound;
+    [SerializeField] private AudioClip DeathSound;
 
     
 
@@ -31,6 +33,8 @@ public class audioManager : MonoBehaviour
          Debug.Log(MC.GameIsPaused);
 
          if (MC.GameIsPaused) return;*/
+        //if(LastAudio == DamageSound && audioSource.isPlaying) return;
+        if(LastAudio != sound && (LastAudio != DamageSound || sound == DeathSound)) audioSource.Stop();
         LastAudio = audioSource.isPlaying ? sound : null;
 
         if (LastAudio == sound) return;

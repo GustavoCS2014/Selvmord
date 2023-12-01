@@ -91,13 +91,11 @@ public class PlayerMovement : MonoBehaviour
     //? Suscribes to an event when the player GameObject is enabled.
     private void OnEnable() {
         EventManager.Instance.OnExtraJumpCollected += AddJump;
-        EventManager.Instance.OnWorldFall += ResetPlayer;
     }
 
     //? Unsuscribes to an event when the player GameObject is disabled to prevent memory leaks.
     private void OnDisable() {
         EventManager.Instance.OnExtraJumpCollected -= AddJump;
-        EventManager.Instance.OnWorldFall -= ResetPlayer;
     }
 
 

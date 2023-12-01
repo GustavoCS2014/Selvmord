@@ -9,17 +9,6 @@ public class ExtraJump : MonoBehaviour
     [SerializeField] private CircleCollider2D circlecCollider;
     [SerializeField] private Light2D shine;
 
-
-    private void OnEnable()
-    {
-        EventManager.Instance.OnWorldFall += ActivateConsumable;
-    }
-
-    private void OnDisable()
-    {
-        EventManager.Instance.OnWorldFall -= ActivateConsumable;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

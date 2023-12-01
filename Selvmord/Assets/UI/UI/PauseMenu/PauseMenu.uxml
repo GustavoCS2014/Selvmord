@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PauseMenu/Stylesheet_pause.uss?fileID=7433441132597879392&amp;guid=cecc14d5bc27f74458e46f5f3c3e267b&amp;type=3#Stylesheet_pause" />
+    <ui:VisualElement name="scene" style="height: 100%; background-color: rgba(0, 0, 0, 0.12); -unity-background-image-tint-color: rgba(0, 0, 0, 0.12); width: 100%; align-items: center; justify-content: center;">
+        <ui:VisualElement style="width: 50%; height: 50%; align-items: center; justify-content: space-around;">
+            <ui:Label text="Game Paused" display-tooltip-when-elided="true" name="game_paused" style="-unity-font-style: bold; font-size: 88%; -unity-text-align: middle-center; top: auto; left: auto; right: auto; bottom: auto; align-items: center; width: 50%; white-space: nowrap; position: relative; text-shadow: 0 0 0 rgb(210, 210, 210); color: rgb(210, 210, 210); padding-left: 0; padding-right: 0; margin-bottom: 2%;" />
+            <ui:VisualElement name="container" style="height: 330px; width: 449px; position: relative; top: auto; left: auto; background-color: rgba(255, 255, 255, 0.05); border-top-left-radius: 25px; border-bottom-left-radius: 25px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; border-left-width: 6px; border-right-width: 6px; border-top-width: 6px; border-bottom-width: 6px; flex-direction: column; align-items: center; justify-content: space-around;">
+                <ui:Button text="Resume" display-tooltip-when-elided="true" name="resume" class="button" />
+                <ui:Button text="Settings" display-tooltip-when-elided="true" name="settings" class="button" />
+                <ui:Button text="Main menu" display-tooltip-when-elided="true" name="mainmenu" class="button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

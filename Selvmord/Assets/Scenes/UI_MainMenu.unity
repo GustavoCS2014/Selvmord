@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8e0111d3ceb6749a33166f3404104a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageSound: {fileID: 8300000, guid: df1f7fc9e8847744782b43b1fb9ec716, type: 3}
+  DeathSound: {fileID: 8300000, guid: 6ec07488e54bfa541ad8ac7481d364f8, type: 3}
 --- !u!82 &260410406
 AudioSource:
   m_ObjectHideFlags: 0

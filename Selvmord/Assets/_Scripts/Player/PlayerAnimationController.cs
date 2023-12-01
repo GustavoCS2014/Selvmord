@@ -19,6 +19,7 @@ public class PlayerAnimationController : MonoBehaviour
     private bool wasGrounded;
     private bool wasWallSliding;
     private bool wasFalling;
+    private bool wasAlive;
     private Vector2 lastSpeed;
     private Vector2 lastInput;
 
@@ -38,24 +39,34 @@ public class PlayerAnimationController : MonoBehaviour
     [Header("____ Tresholds ____")]
     [SerializeField] private float jumpTransitionTreshold = 15f;
     [SerializeField] private float wallSlideTreshold = 0.5f;
-    [SerializeField, Range(0, -30)] private float FallTreshold = -10f;
+    [SerializeField, Range(0, -30)] private float FallTreshold = 0f;
     [Space (15)]
     [Header("____ Particle Emitters ____")]
     [SerializeField] private ParticleSystem LandParticles;
     [SerializeField] private ParticleSystem DoubleJumpParticles;
     [SerializeField] private ParticleSystem HoodieDashParticles;
     [SerializeField] private ParticleSystem PantsDashParticles;
+    [SerializeField] private ParticleSystem DeathParticles;
 
     [Space(15)]
     [Header("____ Sound ____")]
     [SerializeField] private AudioClip MoveSound;
-    [SerializeField] private AudioClip GroundSound;
+    [SerializeField] private AudioClip LandSound;
     [SerializeField] private AudioClip DashSound;
     [SerializeField] private AudioClip DamageSound;
     [SerializeField] private AudioClip DeathSound;
     [SerializeField] private AudioClip JumpSound;
 
     #endregion
+
+    private void OnEnable() {
+        EventManager.Instance.OnDamageTaken += PlayDamageSound;
+    }
+
+    private void OnDisable() {
+        EventManager.Instance.OnDamageTaken -= PlayDamageSound;
+    }
+
 
     private void Awake() {
         playerAnimator = GetComponent<Animator>();
@@ -66,17 +77,21 @@ public class PlayerAnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<SpriteRenderer>().enabled = InputManager.Dead ?  false : true;
-        ChangeAnimation();
-        
-
         GetStateLastTick();
+        ChangeAnimation();
 
-        HandleDashParticles();
-
-        HandleLandParticles();
+        GetComponent<SpriteRenderer>().enabled = InputManager.Dead ?  false : true;
         
+        HandleDashParticles();
+        HandleLandParticles();
         HandleDoubleJumpParticles();
+        HandleRespawnParticles();
+
+        HandleDashSound();
+        HandleJumpSound();
+        HandleLandSound();
+        HandleStepSound();
+        HandleDeathSound();
 
     }
 
@@ -91,6 +106,7 @@ public class PlayerAnimationController : MonoBehaviour
             lastSpeed = player.RB.velocity;
             lastInput = InputManager.MovementInput;
             wasFalling = player.RB.velocity.y < FallTreshold ? true : false;
+            wasAlive = InputManager.Dead ? false : true;
         }
     }
 
@@ -154,10 +170,8 @@ public class PlayerAnimationController : MonoBehaviour
     }
 
     private void HandleLandParticles() {
-        if(wasFalling && player.IsGrounded()) {
-            wasFalling = false;
+        if(IsLanding()) {
             LandParticles.Play();
-            
         }
     }
 
@@ -168,7 +182,53 @@ public class PlayerAnimationController : MonoBehaviour
             DoubleJumpParticles.Play();
         }
     }
+
+    public void HandleRespawnParticles() {
+        if(InputManager.Dead) {
+            DeathParticles.Play();
+        }
+    }
     #endregion
+
+    #region HANDLE SOUNDS   
+
+    private void HandleDashSound() {
+        if(player.IsDashing) {
+            AudioManager.Instance.ReproduceSound(DashSound);
+        }
+    }
+
+    private void HandleLandSound() {
+        if(IsLanding()) {
+            AudioManager.Instance.ReproduceSound(LandSound);
+        }
+    }
+
+    private void HandleJumpSound() {
+        if(wasGrounded && player.RB.velocity.y > 0.3f) {
+            AudioManager.Instance.ReproduceSound(JumpSound);
+        }
+    }
+
+    private void HandleStepSound() {
+        if(Mathf.Abs(player.RB.velocity.x) > 0.3f && player.IsGrounded() && !IsLanding() && !player.IsDashing) {
+            AudioManager.Instance.ReproduceSound(MoveSound);
+        }
+    }
+    
+    private void HandleDeathSound() {
+        if(InputManager.Dead) {
+            AudioManager.Instance.ReproduceSound(DeathSound);
+        }
+    }
+
+    private void PlayDamageSound() {
+        AudioManager.Instance.ReproduceSound(DamageSound);
+    }
+
+    #endregion
+
+    private bool IsLanding() => wasFalling && player.IsGrounded();
 
     private void OnValidate() {
         jumpTransitionTreshold = (float)Math.Round(jumpTransitionTreshold, 1);

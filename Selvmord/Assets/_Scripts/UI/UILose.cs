@@ -2,11 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class UILose : MonoBehaviour
 {
     [SerializeField] AudioClip ClickSound;
     AudioSettings AS;
+
+
+    private void OnEnable()
+    {
+        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+
+        Button BtnRetry = root.Q<Button>("retry");
+        Button BtnQuit = root.Q<Button>("quit");
+        Button BtnMenu = root.Q<Button>("Menu");
+
+        BtnRetry.clicked += () => TryAgain();
+        BtnQuit.clicked += () => ReturnMenu();
+        BtnMenu.clicked += () => QuitGame();
+    }
+
     private void Start()
     {
         AS = GameObject.FindWithTag("AudioManager").GetComponent<AudioSettings>();
@@ -34,14 +50,14 @@ public class UILose : MonoBehaviour
     public void ReturnMenu()
     {
         PlayerPrefs.SetInt("LastGame", 0);
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         SceneManager.LoadScene("UI_MainMenu");
         AS.StartStartMusic();
     }
 
     public void TryAgain()
     {
-        audioManager.Instance.ReproduceClick(ClickSound);
+        AudioManager.Instance.ReproduceClick(ClickSound);
         SceneManager.LoadScene("level1-1");
         AS.MusicStartGame();
         

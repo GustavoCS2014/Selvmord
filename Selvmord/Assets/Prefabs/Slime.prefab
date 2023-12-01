@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9710ddab4333b346997b198ac1bba01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParticulaSouls: {fileID: 977402178547583558, guid: 5b2a305da2f71aa4e90ee55d69bf16f2, type: 3}
   ShowDebugRays: 1
   minStrenght: 3
   maxStrenght: 8

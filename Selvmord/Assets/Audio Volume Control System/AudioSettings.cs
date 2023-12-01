@@ -61,7 +61,7 @@ public class AudioSettings : MonoBehaviour
 
     private void Start()
     {
-        Invoke("PlayMusic", 0.5f);
+        Invoke("PlayMusic", 0f);
     }
 
     private void Update()
