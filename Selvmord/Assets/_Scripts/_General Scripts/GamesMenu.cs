@@ -118,6 +118,7 @@ public class GamesMenu : MonoBehaviour
 
     public void GamePlay()
     {
+        PlayerPrefs.SetInt("FistStart", 0);
         AudioManager.Instance.ReproduceClick(ClickSound);
         ResetGame(game);
         LoadLevel();

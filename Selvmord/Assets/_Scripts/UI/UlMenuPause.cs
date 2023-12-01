@@ -16,6 +16,8 @@ public class UlMenuPause : MonoBehaviour
     [SerializeField] AudioClip ClickSound;
     [SerializeField] AudioClip ReturnSound;
 
+    AudioSettings AS;
+
     private void OnEnable()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
@@ -29,6 +31,11 @@ public class UlMenuPause : MonoBehaviour
         btnLoad.clicked += () => ReturnToMenu();
 
         
+    }
+
+    private void Start()
+    {
+        AS = GameObject.FindWithTag("AudioManager").GetComponent<AudioSettings>();
     }
 
     void settings()
@@ -62,6 +69,7 @@ public class UlMenuPause : MonoBehaviour
         SceneManager.LoadScene("UI_MainMenu");
         AudioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 1f;
+        AS.StartStartMusic();
     }
 
     public void NoOption()
@@ -78,6 +86,7 @@ public class UlMenuPause : MonoBehaviour
         SceneManager.LoadScene("UI_MainMenu");
         AudioManager.Instance.ReproduceClick(ClickSound);
         Time.timeScale = 1f;
+        AS.StartStartMusic();
     }
 
     public void CloseOptions()
