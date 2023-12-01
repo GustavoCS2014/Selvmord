@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     public static bool InteractiveKey;
     public static bool HealInput;
 
+    public static bool Dead;
     //? variable used for the wait coroutine.
     private static float waitForSeconds;
 
@@ -46,7 +47,7 @@ public class InputManager : MonoBehaviour
 
     private void Update() {
         //? Only handle the inputs if the inputs are active.
-        if(inputsActive) {
+        if(inputsActive && !Dead) {
             JumpInputHandler();
             MovementInputHandler();
             DashInputHandler();

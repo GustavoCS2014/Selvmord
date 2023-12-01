@@ -66,6 +66,8 @@ public class PlayerAnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        GetComponent<SpriteRenderer>().enabled = InputManager.Dead ?  false : true;
         ChangeAnimation();
         
 
@@ -117,7 +119,7 @@ public class PlayerAnimationController : MonoBehaviour
         if((currentState == playerWallLand) && !wasWalled) lockedTill = Time.time;
 
         if(Time.time < lockedTill) return currentState;
-
+        if(InputManager.Dead) return playerIdle;
 
         if(InputManager.MovementInput.y < 0 && Mathf.Abs(player.RB.velocity.x) <= 0.05f && Mathf.Abs(player.RB.velocity.y) <= 0.05f) {
             return playerPlatformFalling;

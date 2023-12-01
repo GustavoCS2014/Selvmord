@@ -61,6 +61,7 @@ public class SpawnControler : MonoBehaviour
     #region Spawn Method
     private void RespawnPlayer()
     {
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         transform.position = new Vector2(PlayerPrefs.GetFloat("CPX"+GamePlaying), PlayerPrefs.GetFloat("CPY" + GamePlaying));
     }
 

@@ -45,7 +45,7 @@ public class SlimeAI : MonoBehaviour
 
     private void Awake() {
         rb2D = GetComponent<Rigidbody2D>();
-        //MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
+        MS = GameObject.FindGameObjectWithTag("MainSystem").GetComponent<MainSystem>();
     }
 
     void Update(){
@@ -279,19 +279,26 @@ public class SlimeAI : MonoBehaviour
     #endregion
 
     #region HANDLING GAMEPLAY
-    //private void OnCollisionEnter2D(Collision2D collision) {
-    //    if(collision.gameObject.CompareTag("Player")) {
-    //        if(collision.GetContact(0).normal.y <= -0.9) {
-    //            collision.gameObject.GetComponent<PlayerMovement>().ReboundPlayer();
-    //            MS.AddSoul(1);
-    //            gameObject.SetActive(false);
-    //        }
-    //        else {
-    //            MS.DamagePlayer(30, collision.GetContact(0).normal);
-    //        }
 
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (collision.GetContact(0).normal.y <= -0.9)
+            {
+                collision.gameObject.GetComponent<PlayerMovement>().ReboundPlayer();
+                MS.AddSoul(1);
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                MS.DamageSpikesReturn();
+                MS.DamagePlayer(30, collision.GetContact(0).normal);
+            }
+
+        }
+    }
+
     #endregion
 
 #if UNITY_EDITOR
@@ -307,4 +314,6 @@ public class SlimeAI : MonoBehaviour
         }
     }
 #endif
+
+    
 }

@@ -45,7 +45,7 @@ public class MainSystem : MonoBehaviour
     private void Start()
     {
         ReloundPlayerPrefabs();
-
+        InputManager.inputsActive = true;
         // -------------- HUD -----------------
         CurrentHealth = Health;
 
@@ -58,6 +58,12 @@ public class MainSystem : MonoBehaviour
         PM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
         Physics2D.IgnoreLayerCollision(7, 8, false);
+
+        if(Health < 0)
+        {
+            E.SetActive(true);
+            InputManager.Dead = true;
+        }
     }
     #endregion
 
@@ -151,6 +157,7 @@ public class MainSystem : MonoBehaviour
         if (Health < 0)
         {
             Health = -1;
+            InputManager.Dead = true;
             E.SetActive(true);
             WallDesactive();
             PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive" + GamePlaying));
@@ -185,6 +192,7 @@ public class MainSystem : MonoBehaviour
         if (Health < 0)
         {
             Health = -1;
+            InputManager.Dead = true;
             E.SetActive(true);
             WallDesactive();
             PlayerPrefs.SetInt("SpawnConter", PlayerPrefs.GetInt("SpawnActive" + GamePlaying));
@@ -202,6 +210,7 @@ public class MainSystem : MonoBehaviour
         if (Health < 0)
 
         {
+            InputManager.Dead = false;
             RemoveLife(1);
             RemoveSoul(5);
             E.SetActive(false);

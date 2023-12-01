@@ -11117,11 +11117,6 @@ MonoBehaviour:
   - {fileID: 2039011240}
   Warning: {fileID: 602724139}
   HeavyBullet: {fileID: 8365674595587942248, guid: d97a6b4d0dbb26849a98f7c998391db0, type: 3}
---- !u!1 &1414320130 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9030962780619600282, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-  m_PrefabInstance: {fileID: 9030962780801895527}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1419460680
 GameObject:
   m_ObjectHideFlags: 0
@@ -12680,28 +12675,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1742655724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414320130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 057aae3ccb4edd9489e4544765853717, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FBotom: {fileID: 2101164380}
-  FBar: {fileID: 200500964}
---- !u!81 &1742655732
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414320130}
-  m_Enabled: 1
 --- !u!1 &1743299614
 GameObject:
   m_ObjectHideFlags: 0
@@ -14998,34 +14971,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2020299140}
     m_Modifications:
-    - target: {fileID: 1225247586, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: GroundSound
+    - target: {fileID: 1742655724, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
+      propertyPath: FBar
       value: 
-      objectReference: {fileID: 8300000, guid: b787f9d696f55454dbd96c880345f1bf, type: 3}
-    - target: {fileID: 1087390759514438602, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: m_Intensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087390759514438602, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087390759514438602, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087390759514438602, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087390759514438602, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: m_ShadowIntensityEnabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087390759514438602, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: m_LightVolumeIntensityEnabled
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 200500964}
+    - target: {fileID: 1742655724, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
+      propertyPath: FBotom
+      value: 
+      objectReference: {fileID: 2101164380}
     - target: {fileID: 9030962780619600281, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -15073,50 +15026,6 @@ PrefabInstance:
     - target: {fileID: 9030962780619600282, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 9030962780619600282, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: RunSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 63763dbe2b5b50f48ae22866542d02d5, type: 3}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: DashSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 83cea85be0b34604b9a2ef23d2fe644f, type: 3}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: DeadSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 6ec07488e54bfa541ad8ac7481d364f8, type: 3}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: JumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 0306fb2975f0ba84aba6eb7d7f7c4d24, type: 3}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: DouwnSound
-      value: 
-      objectReference: {fileID: 8300000, guid: b787f9d696f55454dbd96c880345f1bf, type: 3}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: FloorSound
-      value: 
-      objectReference: {fileID: 8300000, guid: b787f9d696f55454dbd96c880345f1bf, type: 3}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: DamageSound
-      value: 
-      objectReference: {fileID: 8300000, guid: df1f7fc9e8847744782b43b1fb9ec716, type: 3}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: VelocityRebound.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: VelocityRebound.y
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 9030962780619600485, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
-      propertyPath: VelocityReboundPlayer
-      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15af1c74ae6f40b45974b25945f865dd, type: 3}
