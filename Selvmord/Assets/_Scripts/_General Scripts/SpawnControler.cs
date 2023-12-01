@@ -52,6 +52,7 @@ public class SpawnControler : MonoBehaviour
 
         if (health < 0)
         {
+
             RespawnPlayer();
         }
 

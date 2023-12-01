@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpikeControler : MonoBehaviour
 {
+    [SerializeField] bool ZoneActive;
     Transform Player;
     [SerializeField] SpikeTrap[] ST;
     [SerializeField] float DistanceActivation;
@@ -28,7 +29,7 @@ public class SpikeControler : MonoBehaviour
                 StartCoroutine(ActiveSpikes());
                 Active= true;
             }
-            
+           
         }
     }
 
@@ -61,5 +62,14 @@ public class SpikeControler : MonoBehaviour
     void Reloded()
     {
         Active = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (ZoneActive)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(transform.position, new Vector3(DistanceActivation * 2, DistanceActivation * 2));
+        }
     }
 }

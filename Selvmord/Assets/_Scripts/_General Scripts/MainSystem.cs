@@ -156,6 +156,7 @@ public class MainSystem : MonoBehaviour
 
         if (Health < 0)
         {
+
             Health = -1;
             InputManager.Dead = true;
             E.SetActive(true);
