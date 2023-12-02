@@ -75,10 +75,10 @@ public class MainSystem : MonoBehaviour
     {
 
         //------------ Testing area -------------
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            AddSoul(5);
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    AddSoul(5);
+        //}
 
         //---------------- HUD  ----------------
 
@@ -308,7 +308,6 @@ public class MainSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("Entra");
             LoseSoul= false;
             GetSoul = true;
         }

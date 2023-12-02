@@ -199,19 +199,19 @@ public class PlayerAnimationController : MonoBehaviour
     }
 
     private void HandleLandSound() {
-        if(IsLanding()) {
+        if(IsLanding() && !InputManager.Dead) {
             AudioManager.Instance.ReproduceSound(LandSound);
         }
     }
 
     private void HandleJumpSound() {
-        if(wasGrounded && player.RB.velocity.y > 0.3f) {
+        if(wasGrounded && player.RB.velocity.y > 0.3f && !InputManager.Dead) {
             AudioManager.Instance.ReproduceSound(JumpSound);
         }
     }
 
     private void HandleStepSound() {
-        if(Mathf.Abs(player.RB.velocity.x) > 0.3f && player.IsGrounded() && !IsLanding() && !player.IsDashing) {
+        if(Mathf.Abs(player.RB.velocity.x) > 0.3f && player.IsGrounded() && !IsLanding() && !player.IsDashing && !InputManager.Dead) {
             AudioManager.Instance.ReproduceSound(MoveSound);
         }
     }

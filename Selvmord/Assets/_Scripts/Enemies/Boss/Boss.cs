@@ -71,7 +71,7 @@ public class Boss : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, new Vector3(EndPoint.position.x,EndPoint.position.y+14.5f), VelocityMovementBoss * Time.deltaTime);
             if (reloded)
             {
-                Invoke("Shoot", 1f);
+                Invoke("Shoot", TimeShoot);
                 reloded = false;
             }
 
