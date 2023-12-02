@@ -193,7 +193,7 @@ public class PlayerAnimationController : MonoBehaviour
     #region HANDLE SOUNDS   
 
     private void HandleDashSound() {
-        if(player.IsDashing) {
+        if(player.IsDashing && !InputManager.Dead) {
             AudioManager.Instance.ReproduceSound(DashSound);
         }
     }

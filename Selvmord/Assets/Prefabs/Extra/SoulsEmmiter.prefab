@@ -4924,4 +4924,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speed: 0.4
-  pickUpRange: 10
+  pickUpRange: 1401.8
