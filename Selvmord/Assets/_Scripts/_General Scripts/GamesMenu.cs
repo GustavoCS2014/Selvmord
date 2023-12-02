@@ -8,10 +8,6 @@ using UnityEngine.UI;
 
 public class GamesMenu : MonoBehaviour
 {
-    public TextMeshProUGUI[] Game1;
-    public TextMeshProUGUI[] Game2;
-    public TextMeshProUGUI[] Game3;
-
     [SerializeField] private GameObject YesNoUI;
     private int game;
 
@@ -23,18 +19,6 @@ public class GamesMenu : MonoBehaviour
     AudioSettings AS;
     void Start()
     {
-        Game1[0].text = "Heal: " + PlayerPrefs.GetFloat("Heal" + 1);
-        Game1[1].text = "Souls: " + PlayerPrefs.GetFloat("Soul" + 1);
-        Game1[2].text = "Lifes: " + PlayerPrefs.GetInt("Life" + 1);
-
-        Game2[0].text = "Heal: " + PlayerPrefs.GetFloat("Heal" + 2);
-        Game2[1].text = "Souls: " + PlayerPrefs.GetFloat("Soul" + 2);
-        Game2[2].text = "Lifes: " + PlayerPrefs.GetInt("Life" + 2);
-
-        Game3[0].text = "Heal: " + PlayerPrefs.GetFloat("Heal" + 3);
-        Game3[1].text = "Souls: " + PlayerPrefs.GetFloat("Soul" + 3);
-        Game3[2].text = "Lifes: " + PlayerPrefs.GetInt("Life" + 3);
-
         AS = GameObject.FindWithTag("AudioManager").GetComponent<AudioSettings>();
     }
 

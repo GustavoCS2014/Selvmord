@@ -26,8 +26,11 @@ public class MainSystem : MonoBehaviour
     public float MaxHealth;
     public float MaxSoul;
     private float CurrentHealth;
+    private float CurrentSoul;
     bool healing = false;
     bool GetingDamage = false;
+    bool GetSoul = false;
+    bool LoseSoul = false;
 
     // ----------- Activate Spawn --------------
     [SerializeField] public GameObject[] CheckPointsGO;
@@ -74,13 +77,12 @@ public class MainSystem : MonoBehaviour
         //------------ Testing area -------------
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            DamagePlayer(30,new Vector2 (0,0));
-
+            AddSoul(5);
         }
 
         //---------------- HUD  ----------------
 
-        SoulBar.fillAmount = soul / MaxSoul;
+        SoulBar.fillAmount = CurrentSoul / MaxSoul;
 
         HealthBar[life - 1].fillAmount = CurrentHealth / MaxHealth;
         for (int i = 0; i < HealthBar.Length; i++)
@@ -88,6 +90,8 @@ public class MainSystem : MonoBehaviour
             if (i > life-1)
             {
                 HealthBar[i].fillAmount = 0;
+            }else if(i < life - 1) {
+                HealthBar[i].fillAmount = 100;
             }
         }
 
@@ -100,6 +104,7 @@ public class MainSystem : MonoBehaviour
         }
 
         HealingDamageEfect();
+        SoulsEfect();
     }
     #endregion
 
@@ -118,7 +123,7 @@ public class MainSystem : MonoBehaviour
         //---------- Healing Effect -----------
         if (healing)
         {
-            CurrentHealth += Time.deltaTime * 150;
+            CurrentHealth += Time.deltaTime * 100;
 
             if (CurrentHealth >= Health)
             {
@@ -129,12 +134,40 @@ public class MainSystem : MonoBehaviour
         //---------- Damage Effect ------------
         if (GetingDamage)
         {
-            CurrentHealth -= Time.deltaTime * 150;
+            CurrentHealth -= Time.deltaTime * 100;
 
             if (CurrentHealth <= Health)
             {
                 CurrentHealth = Health;
                 GetingDamage = false;
+            }
+        }
+    }
+
+    void SoulsEfect()
+    {
+
+        //---------- GetSouls Effect -----------
+        if (GetSoul)
+        {
+            CurrentSoul += Time.deltaTime * 10f;
+
+            if (CurrentSoul >= soul)
+            {
+                CurrentSoul = soul;
+                GetSoul = false;
+            }
+        }
+
+        //---------- LoseSouls10 Effect ------------
+        if (LoseSoul)
+        {
+            CurrentSoul -= Time.deltaTime * 15f;
+
+            if (CurrentSoul <= soul)
+            {
+                CurrentSoul = soul;
+                GetSoul = false;
             }
         }
     }
@@ -264,17 +297,27 @@ public class MainSystem : MonoBehaviour
     public void AddSoul(int souls)
     {
         soul += souls;
+        
 
         if (soul >= 15)
         {
             soul = soul - 15;
             AddLife(1);
+            GetSoul = false;
+            LoseSoul = true;
+        }
+        else
+        {
+            Debug.Log("Entra");
+            LoseSoul= false;
+            GetSoul = true;
         }
     }
 
     public void RemoveSoul(int souls)
     {
         soul -= souls;
+        LoseSoul = true;
 
         if (soul < 0)
         {

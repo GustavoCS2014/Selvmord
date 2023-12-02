@@ -29,7 +29,7 @@ public class SpikeControler : MonoBehaviour
                 StartCoroutine(ActiveSpikes());
                 Active= true;
             }
-           
+
         }
     }
 

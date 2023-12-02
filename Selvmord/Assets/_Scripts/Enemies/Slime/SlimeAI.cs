@@ -195,8 +195,13 @@ public class SlimeAI : MonoBehaviour
             scannedPlatform = false;
         }
 
-        if(!scannedPlatform)
+        if (!scannedPlatform)
+        {
             PlatfomSize = ScanPlatform(); //? Stores the size of the platform the slime is standing on.
+            PlatfomSize[1] = PlatfomSize[1] + 0.5f;
+            PlatfomSize[2] = PlatfomSize[2] - 0.5f;
+        }
+            
        
 
         if(ShowDebugRays) {

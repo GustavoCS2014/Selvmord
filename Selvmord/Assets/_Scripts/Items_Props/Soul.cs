@@ -14,7 +14,7 @@ public class Soul : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            MS.AddSoul(1);
+            MS.AddSoul(3);
             gameObject.SetActive(false);
         }
     }

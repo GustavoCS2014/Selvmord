@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/GameOver/stylesheet_gameover.uss?fileID=7433441132597879392&amp;guid=81e156594c5032c4c893adcff65fa70d&amp;type=3#stylesheet_gameover" />
+    <ui:VisualElement style="height: 502px; -unity-background-image-tint-color: rgb(0, 0, 0);">
+        <ui:VisualElement name="container" style="height: 468px; width: 788px; left: 165px; top: 18px; -unity-background-image-tint-color: rgb(0, 0, 0);">
+            <ui:Label text="Game Over" display-tooltip-when-elided="true" name="gameOver" style="font-size: 80px; -unity-font-style: bold; -unity-text-align: upper-center; color: rgb(180, 6, 6); text-shadow: 5px 2px 0 rgba(255, 255, 255, 0.55); -unity-text-outline-color: rgba(0, 0, 0, 0.57); -unity-text-outline-width: 0; top: 31px;" />
+            <ui:VisualElement name="container2" style="height: 214px; width: 526px; left: 131px; top: 78px; align-items: center; justify-content: space-around;">
+                <ui:Button text="Retry" display-tooltip-when-elided="true" name="retry" class="button" />
+                <ui:Button text="Quit" display-tooltip-when-elided="true" name="quit" class="button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

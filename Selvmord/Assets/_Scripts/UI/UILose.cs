@@ -19,8 +19,8 @@ public class UILose : MonoBehaviour
         Button BtnMenu = root.Q<Button>("Menu");
 
         BtnRetry.clicked += () => TryAgain();
-        BtnQuit.clicked += () => ReturnMenu();
-        BtnMenu.clicked += () => QuitGame();
+        BtnMenu.clicked += () => ReturnMenu();
+        BtnQuit.clicked += () => QuitGame();
     }
 
     private void Start()
