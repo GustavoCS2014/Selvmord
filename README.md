@@ -9,7 +9,10 @@ Selvmord es un juego de plataformas 2D con gráficos píxel art que te sumerge e
 ### [Descarga la DEMO y pruebalo!](https://drive.google.com/file/d/1gl7PViFiq58FkA45g88Bbkku09-IE8Jg/view?usp=sharing)
 
 ## Creditos:
-Gustavo Ceniceros Solis: Artista principal, Programación del movimiento del jugador y ayuda con problemas de programación.
-Diego Alberto López Hernández: Programador principal
-Irianna Denise Peña Puentes: UI, SFX
-[FerPega](https://www.youtube.com/@FerPega/videos): Diseño musical
+**Gustavo Ceniceros Solis**: Artista principal, Auxiliar de programación, Programador de movimiento del jugador.
+
+**Diego Alberto López Hernández**: Programador principal
+
+**Irianna Denise Peña Puentes**: UI, SFX
+
+[**FerPega**](https://www.youtube.com/@FerPega/videos): Diseño musical
