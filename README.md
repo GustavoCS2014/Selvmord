@@ -6,4 +6,10 @@ Pero su felicidad se ve truncada cuando Scarlett intenta suicidarse saltando de 
 
 Selvmord es un juego de plataformas 2D con gráficos píxel art que te sumerge en una historia de redención, sacrificio y esperanza. ¿Serás capaz de abrir las 5 puertas del alma y revivir para estar con Scarlett?
 
-## [Descarga la DEMO y pruebalo!](https://drive.google.com/file/d/1gl7PViFiq58FkA45g88Bbkku09-IE8Jg/view?usp=sharing)
+### [Descarga la DEMO y pruebalo!](https://drive.google.com/file/d/1gl7PViFiq58FkA45g88Bbkku09-IE8Jg/view?usp=sharing)
+
+## Creditos:
+Gustavo Ceniceros Solis: Artista principal, Programación del movimiento del jugador y ayuda con problemas de programación.
+Diego Alberto López Hernández: Programador principal
+Irianna Denise Peña Puentes: UI, SFX
+[FerPega](https://www.youtube.com/@FerPega/videos): Diseño musical
